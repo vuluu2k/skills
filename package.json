@@ -1,14 +1,21 @@
 {
+  "name": "@vuluu2k/vskills",
+  "version": "1.0.0",
   "type": "module",
-  "private": true,
+  "bin": {
+    "vskills": "bin/vskills.js"
+  },
   "scripts": {
     "start": "tsx scripts/cli.ts",
-    "prepare": "git submodule update --init --recursive"
+    "prepare": "git submodule update --init --recursive",
+    "release": "npm publish --access public"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.1.0",
+    "tsx": "^4.0.0"
   },
   "devDependencies": {
-    "@clack/prompts": "^1.1.0",
     "@types/node": "^20.0.0",
-    "tsx": "^4.0.0",
     "typescript": "^5.5.0"
   }
 }

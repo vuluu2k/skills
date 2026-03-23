@@ -1,0 +1,20 @@
+# Ignore source code repositories used for generation (can be very large)
+sources/
+
+# Ignore instructions
+instructions/
+
+# Ignore internal developer guides not needed for the end user
+SKILL_GUIDE.md
+
+# Ignore git and GitHub specific files
+.github/
+.gitmodules
+
+# Ignore OS specific files and logs
+.DS_Store
+*.log
+npm-debug.log*
+
+# Ignore vendor submodules (synced tools already put copies into skills/)
+vendor/

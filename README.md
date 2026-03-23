@@ -6,40 +6,44 @@ A personal collection of [Agent Skills](https://agentskills.io/home) for my work
 
 ## Installation
 
-Install all skills at once:
+Install all skills at once using official agentskills:
 
 ```bash
 npx skills add vuluu2k/skills --skill='*'
 ```
 
-Or install globally:
+### ⚡ Recommended: Install specific Collection directly
+
+We built a custom CLI wrapper to allow installing predefined batches of skills directly to your project:
 
 ```bash
-npx skills add vuluu2k/skills --skill='*' -g
+npx @vuluu2k/vskills install
 ```
 
-Or install a specific skill only:
-
-```bash
-# Vue Options API skill only
-npx skills add vuluu2k/skills --skill='vue-options'
-
-# Pinia Options API skill only
-npx skills add vuluu2k/skills --skill='pinia-options'
-```
+This will run an interactive wizard to let you select a repository collection (like `builderx_spa`) and it will automatically dump all required skills directly into your current working directory.
 
 Learn more about the CLI at [agentskills.io](https://agentskills.io/home).
 
-## Skills
+## Available Collections
 
-### Hand-written Skills
+When using `npx @vuluu2k/vskills install`, you can select from the following curated collections:
 
-Manually written and maintained for my team's specific conventions and patterns.
+| Collection | Included Skills |
+|------------|-----------------|
+| **`builderx_spa`** | `vue-options`, `pinia-options`, `builderx_spa-api`, `builderx_spa-permission`, `vue-antdv-tailwind` |
+| **`vue3-standard`** | `vue`, `pinia`, `vue-best-practices`, `vue-router-best-practices`, `vue-testing-best-practices` |
 
-| Skill | Description |
-|-------|-------------|
-| [vue-options](skills/vue-options) | Vue 3 Options API — data, props, computed, methods, watch, lifecycle hooks, provide/inject, mixins |
-| [pinia-options](skills/pinia-options) | Pinia Option Stores — state, getters, actions, $patch, $reset, mapState/mapWritableState/mapActions |
+## Available Skills
+
+Some of the primary hand-crafted skills included are:
+
+- **`vue`**: Modern Vue 3 Composition API style with script setup
+- **`pinia`**: Pinia state management using Composition API
+- **`vue-options`**: Best practices for Vue Options API style
+- **`pinia-options`**: Clean patterns for Pinia options without Composition API
+- **`builderx_spa-api`**: Deep API fetching rules + class-based endpoints pattern overriding standard HTTP
+- **`builderx_spa-permission`**: Role-based access rules utilizing bitwise permissions
+- **`vue-antdv-tailwind`**: Guide to cleanly mixing Ant Design Vue components with Tailwind CSS
 
 ## Generate Your Own Skills
 

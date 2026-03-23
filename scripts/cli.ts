@@ -388,7 +388,8 @@ async function installSkills() {
 
   const targetProject = await p.text({
     message: 'Enter target project directory path (relative or absolute)',
-    placeholder: '../my-app',
+    initialValue: process.cwd(),
+    placeholder: process.cwd(),
     validate: (value) => {
       if (!value) return 'Path is required'
       if (!existsSync(value)) return 'Directory does not exist'

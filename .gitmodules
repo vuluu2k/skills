@@ -4,3 +4,6 @@
 [submodule "sources/pinia"]
 	path = sources/pinia
 	url = https://github.com/vuejs/pinia
+[submodule "vendor/vuejs-ai"]
+	path = vendor/vuejs-ai
+	url = https://github.com/vuejs-ai/skills

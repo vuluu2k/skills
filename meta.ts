@@ -30,6 +30,14 @@ export const vendors: Record<string, VendorSkillMeta> = {
   //   source: 'https://github.com/vueuse/vueuse',
   //   skills: { 'vueuse-functions': 'vueuse-functions' }
   // },
+  'vuejs-ai': {
+    source: 'https://github.com/vuejs-ai/skills',
+    skills: {
+      'vue-best-practices': 'vue-best-practices',
+      'vue-router-best-practices': 'vue-router-best-practices',
+      'vue-testing-best-practices': 'vue-testing-best-practices',
+    },
+  },
 }
 
 /**

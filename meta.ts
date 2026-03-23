@@ -14,7 +14,8 @@ export interface VendorSkillMeta {
 export const submodules: Record<string, string> = {
   // Example: add repos you want to generate skills from
   // 'react': 'https://github.com/reactjs/react.dev',
-  'vue': 'https://github.com/vuejs/docs'
+  'vue': 'https://github.com/vuejs/docs',
+  'pinia': 'https://github.com/vuejs/pinia',
 }
 
 /**

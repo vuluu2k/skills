@@ -1,0 +1,10 @@
+- Always use Options API style (`export default { ... }`), never `<script setup>` or Composition API.
+- Use plain JavaScript unless TypeScript is explicitly required by the project.
+- `data` must always be a function, not a plain object.
+- `computed` properties should be preferred over in-template expressions for any derived value.
+- `watch` is for side effects only (API calls, logging, syncing). Do not use `watch` to derive state.
+- Always declare `emits` explicitly. Never mutate props.
+- Lifecycle hooks to highlight: `created` (data fetch), `mounted` (DOM/third-party init), `beforeUnmount` (cleanup).
+- Discourage `mixins` — note that composables (Composition API) are the modern replacement, but do not teach them here.
+- Do not mention `<script setup>`, `ref()`, `reactive()`, `defineProps()`, or any Composition API concept.
+- Focus on practical, working code examples. Keep descriptions concise.

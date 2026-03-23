@@ -1,0 +1,11 @@
+- Always use Option Stores style: `defineStore('id', { state, getters, actions })`, never Setup Stores.
+- Use plain JavaScript unless TypeScript is explicitly required by the project.
+- Always show state as a function: `state: () => ({ ... })`.
+- `getters` receive `state` as first argument; use `this` only when accessing other getters (requires explicit return type).
+- `actions` use `this` to access state and other actions. Can be async.
+- Prefer `$patch` over direct mutation when updating multiple properties at once.
+- Always mention that `$reset()` is built-in for Option Stores (no need to implement manually).
+- When using Pinia in Options API components, always show `mapState`, `mapWritableState`, `mapActions`.
+- Warn clearly: never call `useStore()` at module scope — only inside functions or methods.
+- Do not mention `storeToRefs`, `ref()`, `computed()`, or Setup Store syntax.
+- Focus on the connection between Option Store concepts and Vue Options API equivalents: state=data, getters=computed, actions=methods.

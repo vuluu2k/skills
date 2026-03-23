@@ -40,4 +40,5 @@ export const manual = [
   'vue-options',
   'pinia-options',
   'pinia',
+  'vue',
 ]

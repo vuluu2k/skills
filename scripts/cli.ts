@@ -367,17 +367,23 @@ async function cleanup(skipPrompt = false) {
 async function installSkills() {
   const spinner = p.spinner()
   
-  if (Object.keys(collections).length === 0) {
-    p.log.warn('No collections defined in meta.ts')
+  const allCollections: Record<string, string[]> = { ...collections }
+  for (const [vendorName, config] of Object.entries(vendors)) {
+    const vendorConfig = config as VendorConfig
+    allCollections[vendorName] = Object.values(vendorConfig.skills)
+  }
+
+  if (Object.keys(allCollections).length === 0) {
+    p.log.warn('No collections or vendors defined in meta.ts')
     return
   }
 
   const selectedCollectionName = await p.select({
     message: 'Select a collection to install',
-    options: Object.keys(collections).map(name => ({
+    options: Object.keys(allCollections).map(name => ({
       value: name,
       label: name,
-      hint: `${collections[name].length} skills`
+      hint: `${allCollections[name].length} skills`
     }))
   })
 
@@ -412,7 +418,7 @@ async function installSkills() {
     return
   }
 
-  const selectedSkills = collections[selectedCollectionName as string]
+  const selectedSkills = allCollections[selectedCollectionName as string]
   const targetDir = join(targetProject as string, skillsDirName as string)
 
   if (!existsSync(targetDir)) {

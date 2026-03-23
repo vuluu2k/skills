@@ -41,6 +41,17 @@ export const vendors: Record<string, VendorSkillMeta> = {
       'vue-jsx-best-practices': 'vue-jsx-best-practices',
     },
   },
+  'web-design-guidelines': {
+    source: 'https://github.com/vercel-labs/agent-skills',
+    skills: {
+      'composition-patterns': 'composition-patterns',
+      'web-design-guidelines': 'web-design-guidelines',
+      'react-best-practices': 'react-best-practices',
+      'deploy-to-vercel': 'deploy-to-vercel',
+      'react-native-skills': 'react-native-skills',
+      'vercel-cli-with-tokens': 'vercel-cli-with-tokens',
+    },
+  },
 }
 
 export const manual = [

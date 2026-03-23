@@ -31,6 +31,7 @@ When using `npx @vuluu2k/vskills install`, you can select from the following cur
 | Collection | Included Skills |
 |------------|-----------------|
 | **`builderx_spa`** | `vue-options`, `pinia-options`, `builderx_spa-api`, `builderx_spa-permission`, `vue-antdv-tailwind` |
+| **`builderx_api`** | `builderx_api-schemas`, `builderx_api-controllers`, `builderx_api-contexts` |
 | **`vue3-standard`** | `vue`, `pinia`, `vue-best-practices`, `vue-router-best-practices`, `vue-testing-best-practices` |
 
 ## Available Skills
@@ -44,6 +45,9 @@ Some of the primary hand-crafted skills included are:
 - **`builderx_spa-api`**: Deep API fetching rules + class-based endpoints pattern overriding standard HTTP
 - **`builderx_spa-permission`**: Role-based access rules utilizing bitwise permissions
 - **`vue-antdv-tailwind`**: Guide to cleanly mixing Ant Design Vue components with Tailwind CSS
+- **`builderx_api-schemas`**: Core Ecto schema conventions including custom json serializers
+- **`builderx_api-controllers`**: Action fallback and standard tuple responses for Phoenix controllers
+- **`builderx_api-contexts`**: Ecto.Multi and Outbox pattern usage for complex transactions
 
 ## Generate Your Own Skills
 

@@ -58,6 +58,13 @@ export const manual = [
  * Use `npm start install` to quickly copy a batch of skills to a local project.
  */
 export const collections: Record<string, string[]> = {
+  'vue3-standard': [
+    'vue',
+    'pinia',
+    'vue-best-practices',
+    'vue-router-best-practices',
+    'vue-testing-best-practices'
+  ],
   'builderx_spa': [
     'vue-options',
     'pinia-options',
@@ -65,11 +72,9 @@ export const collections: Record<string, string[]> = {
     'builderx_spa-permission',
     'vue-antdv-tailwind'
   ],
-  'vue3-standard': [
-    'vue',
-    'pinia',
-    'vue-best-practices',
-    'vue-router-best-practices',
-    'vue-testing-best-practices'
+  'builderx_api': [
+    'builderx_api-schemas',
+    'builderx_api-controllers',
+    'builderx_api-contexts'
   ]
 }

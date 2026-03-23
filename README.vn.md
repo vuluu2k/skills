@@ -31,6 +31,7 @@ Khi sử dụng `npx @vuluu2k/vskills install`, bạn có thể chọn từ các
 | Tên Collection | Các Skills bao gồm |
 |----------------|-------------------|
 | **`builderx_spa`** | `vue-options`, `pinia-options`, `builderx_spa-api`, `builderx_spa-permission`, `vue-antdv-tailwind` |
+| **`builderx_api`** | `builderx_api-schemas`, `builderx_api-controllers`, `builderx_api-contexts` |
 | **`vue3-standard`** | `vue`, `pinia`, `vue-best-practices`, `vue-router-best-practices`, `vue-testing-best-practices` |
 
 ## Các Skills hiện có
@@ -44,6 +45,9 @@ Một số skills chính được viết thủ công bao gồm:
 - **`builderx_spa-api`**: Các quy tắc fetch API chuyên sâu + pattern class-based endpoints ghi đè HTTP chuẩn.
 - **`builderx_spa-permission`**: Các quy tắc truy cập dựa trên vai trò sử dụng bitwise permissions.
 - **`vue-antdv-tailwind`**: Hướng dẫn kết hợp mượt mà các component Ant Design Vue với Tailwind CSS.
+- **`builderx_api-schemas`**: Các quy ước Ecto schema cốt lõi bao gồm custom json serializers.
+- **`builderx_api-controllers`**: Action fallback và các tuple response chuẩn cho Phoenix controllers.
+- **`builderx_api-contexts`**: Cách sử dụng Ecto.Multi và Outbox pattern cho các transaction phức tạp.
 
 ## Tự tạo Skills cho riêng bạn
 

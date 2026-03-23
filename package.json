@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "tsx scripts/cli.ts",
+    "prepare": "git submodule update --init --recursive"
+  },
+  "devDependencies": {
+    "@clack/prompts": "^1.1.0",
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.5.0"
+  }
+}

@@ -2,7 +2,7 @@
 name: pinia-options
 description: Pinia state management for Vue using Options API style — define stores with state, getters, actions, and use them in Options API components via mapState/mapWritableState/mapActions.
 metadata:
-  author: my_job
+  author: Vũ Lưu
   version: "2026.3.23"
   source: Hand-written based on https://pinia.vuejs.org
 ---

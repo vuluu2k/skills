@@ -27,14 +27,32 @@ By feeding your AI specialized `SKILL.md` documents, you **eliminate AI hallucin
 
 ## 📦 Installation & Quick Start
 
-Forget manual copying. We've built an elegant, interactive CLI to inject expertise directly into your repository.
+You can install these skills using the official [Agent Skills CLI](https://github.com/vercel-labs/skills).
+
+### Options 1: Install All Skills
+Perfect for getting the full collection into your project:
+
+```bash
+npx skills add vuluu2k/skills --skill='*'
+```
+
+### Options 2: Install Specific Skills
+If you only need a particular expertise:
+
+```bash
+# Install Vue Options API skill
+npx skills add vuluu2k/skills --skill='vue-options'
+
+# Install Pinia Options API skill
+npx skills add vuluu2k/skills --skill='pinia-options'
+```
+
+### Options 3: Interactive CLI
+We've also built an elegant, interactive CLI for advanced management (requires cloning this repo):
 
 ```bash
 npx @vuluu2k/vskills install
 ```
-
-> **Pro Tip:** Alternatively, install every skill globally using the official runner:  
-> `npx skills add vuluu2k/skills --skill='*'`
 
 ---
 

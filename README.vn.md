@@ -1,105 +1,105 @@
 <div align="center">
-  <h1>🚀 vskills: Nâng Cấp Sức Mạnh Cho AI Agent Của Bạn</h1>
-  <p><strong>Chuyên Môn Lập Trình Dành Riêng Cho Cursor, GitHub Copilot, & AgentSkills</strong></p>
+  <h1>🚀 vskills: Nâng tầm AI Agent của bạn</h1>
+  <p><strong>Kho tri thức lập trình chuyên sâu cho Cursor, GitHub Copilot, & AgentSkills</strong></p>
   <p>
-    <a href="README.md">🇺🇸 Read in English</a> •
+    <a href="README.md">🇺🇸 Read in English (Đọc Tiếng Anh)</a> •
     <a href="https://agentskills.io/home" target="_blank">Về AgentSkills</a>
   </p>
 </div>
 
-## 🤔 Vấn Đề Của Bạn
+## 🤔 Vấn đề
 
-Bạn đã chán ngấy việc phải liên tục nhắc nhở trợ lý AI của mình về **tiêu chuẩn code riêng** của team? Bạn bực mình khi AI sinh ra các component Vue chung chung trong khi bạn đang cần tích hợp chặt chẽ giữa Ant Design và Tailwind? Hoặc viết các HTTP REST Endpoint tẻ nhạt thay vì tận dụng kiến trúc Class-based API và Action Fallback của hệ thống bạn?
+Bạn mệt mỏi vì phải liên tục nhắc nhở trợ lý AI về các tiêu chuẩn code riêng của team mình? Bạn chán ngấy việc nhận được các Vue component cơ bản khi bạn cần tích hợp chặt chẽ Ant Design + Tailwind, hoặc các REST endpoint mẫu khi team bạn sử dụng class-based API và Action Fallbacks?
 
-## 💡 Giải Pháp: `vskills`
+## 💡 Giải pháp
 
-**`vskills`** là một bộ sưu tập "Agent Skills" được tinh chỉnh tỉ mỉ, giàu ngữ cảnh, thiết kế riêng để **đồng bộ hóa suy nghĩ của AI** với kiến trúc mã nguồn của bạn. Đừng tốn thời gian "prompting" nữa, hãy bắt tay vào xây dựng sản phẩm.
+**`vskills`** là một bộ sưu tập các "Agent Skills" được tuyển chọn kỹ lưỡng, giàu ngữ cảnh, được thiết kế để định hướng AI theo đúng stack phát triển của bạn. Ngừng viết prompt thủ công, bắt đầu xây dựng sản phẩm.
 
-Bằng cách nạp vào cho AI tài liệu `SKILL.md` chuyên sâu, bạn sẽ **loại bỏ các "ảo giác" (hallucinations) của AI** và đảm bảo toàn bộ mã nguồn được sinh ra đều tuân thủ nguyên tắc hệ thống một cách nghiêm ngặt.
+Bằng cách cung cấp cho AI các tài liệu `SKILL.md` chuyên dụng, bạn sẽ **loại bỏ tình trạng AI "ảo tưởng" (hallucination)** và thực thi nghiêm ngặt kiến trúc dự án của mình.
 
-## ✨ Tại Sao Bạn Cần `vskills`?
+## ✨ Tại sao bạn cần công cụ này
 
-- 🧠 **Onboarding Dự Án Ngay Lập Tức:** Chỉ với một dòng lệnh, toàn bộ kiến thức và luật lệ của project sẽ được đưa thẳng vào thư mục `.agents/skills` của bạn.
-- 🎯 **Chính Xác Tuyệt Đối:** Từ những pattern ngách của Vue Options API đến quy tắc quản lý Database Transaction bằng Ecto.Multi của Phoenix, bạn sẽ nhận được đúng đoạn code mình cần.
-- ⚡ **Cài Đặt Không Ma Sát:** CLI tương tác mượt mà giúp bạn lựa chọn và tải các skill nhanh chóng với thiết kế giao diện Terminal tuyệt đẹp.
+- 🧠 **Onboarding dự án tức thì:** Một lệnh duy nhất sẽ đưa toàn bộ ngữ cảnh cần thiết vào thư mục `.agents/skills` của bạn.
+- 🎯 **Độ chính xác tuyệt đối:** Từ các pattern niche của Vue Options API đến các quy tắc Elixir Phoenix Ecto.Multi, nhận code chính xác theo ý bạn.
+- ⚡ **Thiết lập không tốn sức:** CLI tương tác, thiết kế đẹp mắt giúp việc quản lý skills trở nên dễ dàng.
 
 ---
 
-## 📦 Cài Đặt & Bắt Đầu Nhanh
+## 📦 Cài đặt & Bắt đầu nhanh
 
-Hãy quên việc copy-paste thủ công đi! Chúng tôi đã xây dựng một CLI xịn xò để tiêm thẳng hệ thống kỹ năng vào thư mục dự án của bạn:
+Quên việc copy thủ công đi. Chúng tôi đã xây dựng một CLI tương tác thanh lịch để đưa kiến thức trực tiếp vào repo của bạn.
 
 ```bash
 npx @vuluu2k/vskills install
 ```
 
-> **Mẹo Nâng Cao:** Nếu bạn muốn tải toàn bộ mọi skills thông qua công cụ gốc của AgentSkills:  
+> **Mẹo:** Bạn cũng có thể cài đặt mọi skill trên toàn hệ thống bằng công cụ chính thức:  
 > `npx skills add vuluu2k/skills --skill='*'`
 
 ---
 
-## 📚 Các Bộ Sưu Tập (Collections)
+## 📚 Bộ sưu tập tuyển chọn (Collections)
 
-Chỉ cần chọn "bộ não" phù hợp cho AI của bạn:
+Chọn chính xác "nâng cấp não bộ" mà AI của bạn cần.
 
-| Tên Collection | Lĩnh Vực | Các Skills Bao Gồm |
-|----------------|----------|--------------------|
-| 🏗️ **`builderx_spa`** | Kiến Trúc Frontend Đặc Thù | `vue-options`, `pinia-options`, `builderx_spa-api`, `builderx_spa-permission`, `vue-antdv-tailwind` |
-| ⚙️ **`builderx_api`** | Phoenix Elixir Backend | `builderx_api-schemas`, `builderx_api-controllers`, `builderx_api-contexts` |
-| 🌟 **`vue3-standard`** | Chuẩn Mực Vue 3 Mới | `vue`, `pinia`, `vue-best-practices`, `vue-router-best-practices`, `vue-testing-best-practices` |
+| Bộ sưu tập | Lĩnh vực trọng tâm | Các Skills bao gồm |
+|------------|------------|-----------------|
+| 🏗️ **`builderx_spa`** | Frontend BuilderX chuyên dụng | `vue-options`, `pinia-options`, `builderx_spa-api`, `builderx_spa-permission`, `vue-antdv-tailwind` |
+| ⚙️ **`builderx_api`** | Backend Phoenix Elixir | `builderx_api-schemas`, `builderx_api-controllers`, `builderx_api-contexts` |
+| 🌟 **`vue3-standard`** | Làm chủ Vue 3 thuần túy | `vue`, `pinia`, `vue-best-practices`, `vue-router-best-practices`, `vue-testing-best-practices` |
 
-## 🛠️ Phân Tích Chuyên Sâu Các Skills Hiện Có
+## 🛠️ Chi tiết: Các Skills hiện có
 
-Một số skills giá trị nhất được chúng tôi đúc kết qua các dự án thực tế:
+Một số skill được viết tay tỉ mỉ nằm trong các bộ sưu tập:
 
-### Hệ Sinh Thái Vue
-- **`vue` / `vue-best-practices`**: Các best-practice mới nhất cho Vue 3 Composition API với script setup, kỹ thuật animation và render nâng cao.
-- **`pinia`**: Quản lý State tối ưu bằng Composition API.
-- **`vue-options` / `pinia-options`**: Dành cho các hệ thống vẫn tận dụng sức mạnh to lớn của Vue Options API (Pattern để viết code Options mượt mà nhất).
-- **`vue-router-best-practices`**: Xử lý triệt để lỗi vòng lặp vô hạn và kẹt lifecycle khi điều hướng.
-- **`vue-testing-best-practices`**: Blackbox testing, cấu hình Vitest và chạy E2E bằng Playwright.
+### Hệ sinh thái Frontend & Vue
+- **`vue` / `vue-best-practices`**: Phong cách Modern Vue 3 Composition API với script setup, kỹ thuật animation và rendering nâng cao.
+- **`pinia`**: Quản lý state sử dụng Composition API.
+- **`vue-options` / `pinia-options`**: Các best practices chuẩn mực cho các tổ chức vẫn đang tận dụng sức mạnh của Vue Options API.
+- **`vue-router-best-practices`**: Tránh lỗi vòng lặp điều hướng vô tận và các lỗi vòng đời.
+- **`vue-testing-best-practices`**: Blackbox testing, thiết lập Vitest và E2E Playwright.
 
-### Kiến Trúc Lõi Nâng Cao
-- **`builderx_spa-api`**: Bộ luật Fetch API cực sâu + Pattern Class-based endpoints sinh ra để thay thế/ghi đè các thiết kế HTTP Service rườm rà.
-- **`builderx_spa-permission`**: Cấu hình phân quyền thông minh dựa trên kỹ thuật tính toán nhị phân (bitwise roles).
-- **`vue-antdv-tailwind`**: Bí kíp "Trộn" (Mix) Ant Design Vue với bộ class tiện ích của Tailwind CSS một cách sạch sẽ và không gây xung đột UI.
+### Các Pattern Kiến trúc Nâng cao
+- **`builderx_spa-api`**: Các quy tắc fetch API chuyên sâu + pattern class-based endpoint thay thế HTTP tiêu chuẩn.
+- **`builderx_spa-permission`**: Quy tắc phân quyền dựa trên Role sử dụng bitwise permissions.
+- **`vue-antdv-tailwind`**: Hướng dẫn chuẩn để kết hợp mượt mà Ant Design Vue với Tailwind CSS.
 
-### Bậc Thầy Backend (Elixir / Phoenix)
-- **`builderx_api-schemas`**: Quy chuẩn Ecto schema cốt lõi tích hợp custom JSON serializers.
-- **`builderx_api-controllers`**: Tiêu chuẩn sử dụng Action Fallback và tuple response chung thống nhất.
-- **`builderx_api-contexts`**: Giải quyết bài toán đa quy trình (Multi-step transactions) bằng Ecto.Multi song hành với Outbox pattern.
+### Backend (Elixir / Phoenix)
+- **`builderx_api-schemas`**: Các quy ước Ecto schema bao gồm custom json serializers.
+- **`builderx_api-controllers`**: Action fallback và cấu trúc tuple phản hồi chuẩn cho Phoenix controller.
+- **`builderx_api-contexts`**: Sử dụng Ecto.Multi và Outbox pattern cho các transaction phức tạp nhiều bước.
 
 ---
 
-## ⚙️ Tự Tạo Quỹ Kỹ Năng Cho Doanh Nghiệp Của Bạn
+## ⚙️ Tự tạo & Quản lý Skills của riêng bạn
 
-Bạn muốn tự tay xây dựng kho tàng kiến thức AI nội bộ? Fork hoặc clone kho dữ liệu này:
+Bạn muốn xây dựng kho tri thức AI của riêng mình? Fork hoặc clone repo này để bắt đầu tạo bộ sưu tập skill tùy chỉnh cho team.
 
-1. **Tải về Repo:**
+1. **Clone repo:**
    ```bash
    git clone https://github.com/vuluu2k/skills
    cd skills
    npm install
    ```
 
-2. **Sửa đổi file `meta.ts`** để khai báo các dự án thực tế bạn đang cắm submodules học hỏi.
+2. **Cập nhật `meta.ts`** với các dự án và nguồn skill của bạn.
 
-3. **Dùng CLI Mạnh Mẽ Của Chúng Tôi** để thao tác vạn vật:
+3. **Sử dụng CLI mạnh mẽ** để quản lý:
    ```bash
-   npm start              # Hiện Menu tương tác đỉnh cao
-   npm start install      # Cài skills vào dự án đang làm việc
-   npm start init         # Tự động Clone toàn bộ Tracked Submodules từ meta.ts
-   npm start sync         # Đồng bộ (Pull & Deploy) vendor skills tự động
-   npm start check        # Cập nhật xem remote có commit nào mới để sync
-   npm start cleanup      # Tối ưu: xoá sạch những logic dư thừa không định nghĩa
+   npm start              # Mở menu tương tác
+   npm start install      # Cài đặt bộ sưu tập skill vào dự án đích
+   npm start init         # Clone các submodule được theo dõi từ meta.ts
+   npm start sync         # Cập nhật + đồng bộ vendor skills
+   npm start check        # Kiểm tra cập nhật từ remote
+   npm start cleanup      # Xóa các skill cũ không có trong meta.ts
    ```
 
-4. **Khai thác AI Agent:**
-   > "Generate skills for `<project>` based on the docs in `sources/<project>/`"
+4. **Yêu cầu AI generate skills:**
+   > "Generate skills cho `<project>` dựa trên tài liệu trong `sources/<project>/`"
 
-Sách Trắng hướng dẫn: Xem ngay [SKILL_GUIDE.vn.md](SKILL_GUIDE.vn.md) để biết cách huấn luyện bằng AI Skills chuẩn nhất.
+Xem [SKILL_GUIDE.md](SKILL_GUIDE.md) để biết hướng dẫn chi tiết về cách viết một AI skill hoàn hảo.
 
 ---
 <div align="center">
-  <p>Được xây dựng bằng cả đam mê ❤️ bởi vuluu2k. License: MIT</p>
+  <p>Xây dựng với ❤️ bởi vuluu2k. License: MIT</p>
 </div>

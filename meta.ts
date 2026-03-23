@@ -39,4 +39,5 @@ export const vendors: Record<string, VendorSkillMeta> = {
 export const manual = [
   'vue-options',
   'pinia-options',
+  'pinia',
 ]

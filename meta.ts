@@ -48,6 +48,9 @@ export const manual = [
   'builderx_spa-api',
   'builderx_spa-permission',
   'vue-antdv-tailwind',
+  'builderx_api-schemas',
+  'builderx_api-controllers',
+  'builderx_api-contexts',
 ]
 
 /**

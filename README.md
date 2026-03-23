@@ -73,6 +73,7 @@ See [SKILL_GUIDE.md](SKILL_GUIDE.md) for detailed guidelines on writing skills.
 
 ```bash
 npm start              # Interactive menu
+npm start install      # Install skill collections to a target project
 npm start init         # Clone submodules from meta.ts
 npm start sync         # Pull updates + sync vendor skills
 npm start check        # Check for available updates

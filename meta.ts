@@ -40,13 +40,33 @@ export const vendors: Record<string, VendorSkillMeta> = {
   },
 }
 
-/**
- * Hand-written skills managed manually (not from submodules or vendors).
- * These are listed here for tracking — the CLI uses this list during cleanup.
- */
 export const manual = [
   'vue-options',
   'pinia-options',
   'pinia',
   'vue',
+  'builderx-api',
+  'builderx-permission',
+  'vue-antdv-tailwind',
 ]
+
+/**
+ * Collections of skills grouped by target projects/repos.
+ * Use `npm start install` to quickly copy a batch of skills to a local project.
+ */
+export const collections: Record<string, string[]> = {
+  'builderx_spa': [
+    'vue-options',
+    'pinia-options',
+    'builderx-api',
+    'builderx-permission',
+    'vue-antdv-tailwind'
+  ],
+  'vue3-standard': [
+    'vue',
+    'pinia',
+    'vue-best-practices',
+    'vue-router-best-practices',
+    'vue-testing-best-practices'
+  ]
+}

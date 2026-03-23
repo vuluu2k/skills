@@ -4,7 +4,7 @@ import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import * as p from '@clack/prompts'
-import { manual, submodules, vendors } from '../meta.ts'
+import { collections, manual, submodules, vendors } from '../meta.ts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
@@ -364,6 +364,96 @@ async function cleanup(skipPrompt = false) {
   }
 }
 
+async function installSkills() {
+  const spinner = p.spinner()
+  
+  if (Object.keys(collections).length === 0) {
+    p.log.warn('No collections defined in meta.ts')
+    return
+  }
+
+  const selectedCollectionName = await p.select({
+    message: 'Select a collection to install',
+    options: Object.keys(collections).map(name => ({
+      value: name,
+      label: name,
+      hint: `${collections[name].length} skills`
+    }))
+  })
+
+  if (p.isCancel(selectedCollectionName)) {
+    p.cancel('Cancelled')
+    return
+  }
+
+  const targetProject = await p.text({
+    message: 'Enter target project directory path (relative or absolute)',
+    placeholder: '../my-app',
+    validate: (value) => {
+      if (!value) return 'Path is required'
+      if (!existsSync(value)) return 'Directory does not exist'
+    }
+  })
+
+  if (p.isCancel(targetProject)) {
+    p.cancel('Cancelled')
+    return
+  }
+
+  const skillsDirName = await p.text({
+    message: 'Name of the skills directory inside target project?',
+    initialValue: 'skills',
+    placeholder: 'skills'
+  })
+
+  if (p.isCancel(skillsDirName)) {
+    p.cancel('Cancelled')
+    return
+  }
+
+  const selectedSkills = collections[selectedCollectionName as string]
+  const targetDir = join(targetProject as string, skillsDirName as string)
+
+  if (!existsSync(targetDir)) {
+    mkdirSync(targetDir, { recursive: true })
+  }
+
+  spinner.start(`Installing ${selectedSkills.length} skills to ${targetDir}...`)
+
+  let successCount = 0;
+  for (const skill of selectedSkills) {
+    const sourcePath = join(root, 'skills', skill)
+    if (!existsSync(sourcePath)) {
+      p.log.warn(`Skill not found: ${skill}`)
+      continue
+    }
+
+    const destPath = join(targetDir, skill)
+    if (existsSync(destPath)) {
+      rmSync(destPath, { recursive: true })
+    }
+    
+    mkdirSync(destPath, { recursive: true })
+    
+    const files = readdirSync(sourcePath, { recursive: true, withFileTypes: true })
+    for (const file of files) {
+      if (file.isFile()) {
+        const fullPath = join(file.parentPath, file.name)
+        const relativePath = fullPath.replace(sourcePath, '')
+        const dp = join(destPath, relativePath)
+        const dd = dirname(dp)
+        if (!existsSync(dd)) {
+          mkdirSync(dd, { recursive: true })
+        }
+        cpSync(fullPath, dp)
+      }
+    }
+    successCount++;
+  }
+
+  spinner.stop(`Installed ${successCount}/${selectedSkills.length} skills to target project`)
+}
+
 async function main() {
   const args = process.argv.slice(2)
   const skipPrompt = args.includes('-y') || args.includes('--yes')
@@ -397,9 +487,16 @@ async function main() {
     return
   }
 
+  if (command === 'install') {
+    p.intro('Skills Manager - Install')
+    await installSkills()
+    p.outro('Done')
+    return
+  }
+
   if (skipPrompt) {
     p.log.error('Command required when using -y flag')
-    p.log.info('Available commands: init, sync, check, cleanup')
+    p.log.info('Available commands: install, init, sync, check, cleanup')
     process.exit(1)
   }
 
@@ -408,6 +505,7 @@ async function main() {
   const action = await p.select({
     message: 'What would you like to do?',
     options: [
+      { value: 'install', label: 'Install collections', hint: 'Copy skill collections to a local project' },
       { value: 'sync', label: 'Sync submodules', hint: 'Pull latest and sync Type 2 skills' },
       { value: 'init', label: 'Init submodules', hint: 'Add new submodules from meta.ts' },
       { value: 'check', label: 'Check updates', hint: 'See available updates' },
@@ -421,6 +519,9 @@ async function main() {
   }
 
   switch (action) {
+    case 'install':
+      await installSkills()
+      break
     case 'init':
       await initSubmodules()
       break

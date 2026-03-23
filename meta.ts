@@ -36,6 +36,9 @@ export const vendors: Record<string, VendorSkillMeta> = {
       'vue-best-practices': 'vue-best-practices',
       'vue-router-best-practices': 'vue-router-best-practices',
       'vue-testing-best-practices': 'vue-testing-best-practices',
+      'vue-options-api-best-practices': 'vue-options-api-best-practices',
+      'vue-pinia-best-practices': 'vue-pinia-best-practices',
+      'vue-jsx-best-practices': 'vue-jsx-best-practices',
     },
   },
 }

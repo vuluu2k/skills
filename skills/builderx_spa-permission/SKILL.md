@@ -1,5 +1,5 @@
 ---
-name: builderx-permission
+name: builderx_spa-permission
 description: Rule-based permission checking in BuilderX SPA using bitwise operations from @/composable/employeePermission. Use this skill when hiding/showing UI or checking user access.
 metadata:
   author: Vũ Lưu

@@ -45,8 +45,8 @@ export const manual = [
   'pinia-options',
   'pinia',
   'vue',
-  'builderx-api',
-  'builderx-permission',
+  'builderx_spa-api',
+  'builderx_spa-permission',
   'vue-antdv-tailwind',
 ]
 
@@ -58,8 +58,8 @@ export const collections: Record<string, string[]> = {
   'builderx_spa': [
     'vue-options',
     'pinia-options',
-    'builderx-api',
-    'builderx-permission',
+    'builderx_spa-api',
+    'builderx_spa-permission',
     'vue-antdv-tailwind'
   ],
   'vue3-standard': [

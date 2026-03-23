@@ -1,4 +1,4 @@
-# My Skills
+# My Skills 🌐 [[Tiếng Việt](README.vn.md)]
 
 A personal collection of [Agent Skills](https://agentskills.io/home) for my work stack, focused on Vue Options API patterns.
 

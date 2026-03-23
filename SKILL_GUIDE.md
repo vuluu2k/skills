@@ -1,4 +1,4 @@
-# SKILL_GUIDE.md
+# SKILL_GUIDE.md 🌐 [[Tiếng Việt](SKILL_GUIDE.vn.md)]
 
 Complete guide for creating and managing agent skills in this repository.
 

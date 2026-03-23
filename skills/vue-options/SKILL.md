@@ -2,7 +2,7 @@
 name: vue-options
 description: Vue 3 Options API — data, props, computed, methods, watch, emits, provide/inject, lifecycle hooks, and mixins. Use when the project uses Options API style (Vue 2 legacy or explicit Vue 3 Options API preference).
 metadata:
-  author: my_job
+  author: Vũ Lưu
   version: "2026.3.23"
   source: Hand-written based on https://vuejs.org/api/options-state.html
 ---

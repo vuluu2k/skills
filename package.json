@@ -1,6 +1,6 @@
 {
   "name": "@vuluu2k/vskills",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "bin": {
     "vskills": "bin/vskills.js"

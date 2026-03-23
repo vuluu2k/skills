@@ -1,16 +1,16 @@
 ---
 name: core-option-stores
-description: Định nghĩa Option Stores trong Pinia — state, getters, actions, $patch, $reset, subscriptions.
+description: Defining Option Stores in Pinia — state, getters, actions, $patch, $reset, subscriptions.
 ---
 
 # Option Stores
 
-Option Stores có cú pháp tương tự Vue Options API:
+Option Stores follow the same structure as Vue Options API:
 - `state` ↔ `data`
 - `getters` ↔ `computed`
 - `actions` ↔ `methods`
 
-## Định nghĩa store cơ bản
+## Defining a Store
 
 ```ts
 // stores/user.ts
@@ -36,15 +36,15 @@ export const useUserStore = defineStore('user', {
   }),
 
   getters: {
-    // Nhận state làm tham số — có cache
+    // Receives state as parameter — cached
     userCount: (state) => state.users.length,
 
-    // Dùng this để truy cập getter khác (cần khai báo kiểu trả về)
+    // Use `this` to access other getters (explicit return type required)
     hasUsers(): boolean {
       return this.userCount > 0
     },
 
-    // Getter trả về function (mất cache — dùng khi cần tham số)
+    // Returns a function (loses caching — use when a parameter is needed)
     getUserById: (state) => {
       return (id: number) => state.users.find(u => u.id === id) ?? null
     }
@@ -72,9 +72,9 @@ export const useUserStore = defineStore('user', {
       return user
     },
 
-    // Truy cập store khác bên trong action
+    // Access another store inside an action
     async fetchCurrentUserOrders() {
-      const orderStore = useOrderStore() // gọi trong function, không ở module scope
+      const orderStore = useOrderStore() // call inside function, not at module scope
       if (this.currentUser) {
         await orderStore.fetchByUserId(this.currentUser.id)
       }
@@ -83,7 +83,7 @@ export const useUserStore = defineStore('user', {
 })
 ```
 
-## $patch — Cập nhật nhiều state cùng lúc
+## $patch — Update Multiple State Properties at Once
 
 ```ts
 // Object syntax
@@ -92,23 +92,23 @@ store.$patch({
   currentUser: { id: 1, name: 'Alice', email: 'alice@example.com' }
 })
 
-// Function syntax (dùng khi cần logic phức tạp như push, splice)
+// Function syntax (use for complex mutations like push, splice)
 store.$patch((state) => {
   state.users.push(newUser)
   state.loading = false
 })
 ```
 
-## $reset — Khôi phục state về giá trị ban đầu
+## $reset — Reset State to Initial Values
 
-Option Stores có sẵn `$reset()` tự động — không cần viết thêm:
+Option Stores have built-in `$reset()` — no extra code needed:
 
 ```ts
 const store = useUserStore()
-store.$reset() // state quay về giá trị khởi tạo trong state()
+store.$reset() // reverts state to what was returned by state()
 ```
 
-## $subscribe — Theo dõi thay đổi state
+## $subscribe — Watch State Changes
 
 ```ts
 store.$subscribe((mutation, state) => {
@@ -117,11 +117,11 @@ store.$subscribe((mutation, state) => {
   localStorage.setItem('user', JSON.stringify(state))
 })
 
-// Giữ subscription sau khi component unmount
+// Keep subscription alive after component is unmounted
 store.$subscribe(callback, { detached: true })
 ```
 
-## $onAction — Theo dõi actions
+## $onAction — Watch Action Calls
 
 ```ts
 const unsubscribe = store.$onAction(({ name, args, after, onError }) => {

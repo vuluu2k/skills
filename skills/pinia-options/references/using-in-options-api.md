@@ -1,19 +1,19 @@
 ---
 name: using-in-options-api
-description: Cách dùng Pinia store trong Options API component bằng mapState, mapWritableState, mapActions.
+description: How to use Pinia stores in Options API components via mapState, mapWritableState, and mapActions.
 ---
 
-# Dùng Pinia trong Options API Components
+# Using Pinia in Options API Components
 
-Pinia cung cấp 3 helper để kết nối store với Options API component:
+Pinia provides 3 helpers to connect stores with Options API components:
 
-| Helper | Mục đích |
-|--------|----------|
+| Helper | Purpose |
+|--------|---------|
 | `mapState` | Map state/getters → computed (readonly) |
-| `mapWritableState` | Map state → computed (có thể gán = writable) |
+| `mapWritableState` | Map state → computed (writable, supports v-model) |
 | `mapActions` | Map actions → methods |
 
-## Ví dụ đầy đủ
+## Full Example
 
 ```js
 // components/UserList.vue
@@ -22,29 +22,29 @@ import { useUserStore } from '@/stores/user'
 
 export default {
   computed: {
-    // Readonly: truy cập state và getters
+    // Readonly: access state and getters
     ...mapState(useUserStore, ['users', 'loading', 'userCount']),
 
-    // Writable: có thể dùng v-model hoặc gán trực tiếp
+    // Writable: can use with v-model or direct assignment
     ...mapWritableState(useUserStore, ['currentUser']),
 
-    // Đặt tên alias nếu muốn
+    // With aliases
     ...mapState(useUserStore, {
-      allUsers: 'users',         // alias cho state
-      count: 'userCount',        // alias cho getter
+      allUsers: 'users',      // alias for state
+      count: 'userCount',     // alias for getter
     })
   },
 
   methods: {
     ...mapActions(useUserStore, ['fetchUsers', 'fetchUserById']),
 
-    // Alias cho actions
+    // With aliases
     ...mapActions(useUserStore, {
       loadUsers: 'fetchUsers'
     }),
 
     async handleEdit(userId) {
-      await this.fetchUserById(userId) // action đã được map
+      await this.fetchUserById(userId) // mapped action
       this.$router.push('/edit')
     }
   },
@@ -55,21 +55,21 @@ export default {
 }
 ```
 
-## Dùng với v-model
+## Using with v-model
 
 ```vue
 <template>
-  <!-- currentUser đã dùng mapWritableState nên có thể v-model -->
+  <!-- currentUser is mapped with mapWritableState, so v-model works -->
   <input v-model="currentUser.name" />
 </template>
 ```
 
-> ❌ Không dùng `mapState` với `v-model` — nó là readonly, Vue sẽ cảnh báo.
-> ✅ Dùng `mapWritableState` cho các field cần chỉnh sửa trực tiếp.
+> ❌ Do not use `mapState` with `v-model` — it is readonly and Vue will warn.
+> ✅ Use `mapWritableState` for fields that need direct mutation.
 
-## Truy cập store trực tiếp (không dùng map helpers)
+## Direct Store Access (without map helpers)
 
-Khi cần linh hoạt hơn, truy cập store trực tiếp qua `setup()`:
+When you need more flexibility, access the store directly via `setup()`:
 
 ```js
 import { useUserStore } from '@/stores/user'
@@ -92,11 +92,11 @@ export default {
 }
 ```
 
-## Lưu ý quan trọng
+## Important Notes
 
-- Không khai báo `useStore()` ở module scope (ngoài function) — phải gọi bên trong `setup()`, `computed`, hoặc `methods`.
-- `mapActions` trả về các function đã được bind — có thể destructure mà không mất `this`.
-- `mapState` map cả **state** lẫn **getters** — không cần phân biệt.
+- Never call `useStore()` at module scope — only inside `setup()`, `computed`, or `methods`.
+- `mapActions` returns pre-bound functions — safe to destructure without losing `this`.
+- `mapState` maps both **state** and **getters** — no need to distinguish between them.
 
 <!--
 Source references:

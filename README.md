@@ -1,111 +1,105 @@
-# My Skills 🌐 [[Tiếng Việt](README.vn.md)]
+<div align="center">
+  <h1>🚀 vskills: Supercharge Your AI Agents</h1>
+  <p><strong>Curated Coding Expertise for Cursor, GitHub Copilot, & AgentSkills</strong></p>
+  <p>
+    <a href="README.vn.md">🇻🇳 Read in Vietnamese (Đọc Tiếng Việt)</a> •
+    <a href="https://agentskills.io/home" target="_blank">About AgentSkills</a>
+  </p>
+</div>
 
-A personal collection of [Agent Skills](https://agentskills.io/home) for my work stack, focused on Vue Options API patterns.
+## 🤔 The Problem
 
-**GitHub:** https://github.com/vuluu2k/skills
+Are you tired of constantly reminding your AI assistant about your team's specific coding standards? Tired of generic Vue components when you need strict Ant Design + Tailwind integrations, or boilerplate REST endpoints when your team uses class-based APIs and Action Fallbacks?
 
-## Installation
+## 💡 The Solution
 
-Install all skills at once using official agentskills:
+**`vskills`** is a curated collection of highly specific, context-rich "Agent Skills" designed to align your AI with your exact development stack. Stop prompting, start building.
 
-```bash
-npx skills add vuluu2k/skills --skill='*'
-```
+By feeding your AI specialized `SKILL.md` documents, you **eliminate AI hallucinations** and strictly enforce your project's architecture.
 
-### ⚡ Recommended: Install specific Collection directly
+## ✨ Why You Need This
 
-We built a custom CLI wrapper to allow installing predefined batches of skills directly to your project:
+- 🧠 **Instant Project Onboarding:** One command dumps all necessary context right into your `.agents/skills` folder.
+- 🎯 **Pinpoint Accuracy:** From niche Vue Options API patterns to Elixir Phoenix Ecto.Multi rules, get the code exactly how you want it.
+- ⚡ **Zero-Friction Setup:** Interactive, beautifully designed CLI makes managing skills effortless.
+
+---
+
+## 📦 Installation & Quick Start
+
+Forget manual copying. We've built an elegant, interactive CLI to inject expertise directly into your repository.
 
 ```bash
 npx @vuluu2k/vskills install
 ```
 
-This will run an interactive wizard to let you select a repository collection (like `builderx_spa`) and it will automatically dump all required skills directly into your current working directory.
+> **Pro Tip:** Alternatively, install every skill globally using the official runner:  
+> `npx skills add vuluu2k/skills --skill='*'`
 
-Learn more about the CLI at [agentskills.io](https://agentskills.io/home).
+---
 
-## Available Collections
+## 📚 Curated Collections
 
-When using `npx @vuluu2k/vskills install`, you can select from the following curated collections:
+Pick the exact brain-upgrade your AI needs.
 
-| Collection | Included Skills |
-|------------|-----------------|
-| **`builderx_spa`** | `vue-options`, `pinia-options`, `builderx_spa-api`, `builderx_spa-permission`, `vue-antdv-tailwind` |
-| **`builderx_api`** | `builderx_api-schemas`, `builderx_api-controllers`, `builderx_api-contexts` |
-| **`vue3-standard`** | `vue`, `pinia`, `vue-best-practices`, `vue-router-best-practices`, `vue-testing-best-practices` |
+| Collection | Focus Area | Included Skills |
+|------------|------------|-----------------|
+| 🏗️ **`builderx_spa`** | Specialized BuilderX Frontend | `vue-options`, `pinia-options`, `builderx_spa-api`, `builderx_spa-permission`, `vue-antdv-tailwind` |
+| ⚙️ **`builderx_api`** | Phoenix Elixir Backend | `builderx_api-schemas`, `builderx_api-controllers`, `builderx_api-contexts` |
+| 🌟 **`vue3-standard`** | Pure Vue 3 Mastery | `vue`, `pinia`, `vue-best-practices`, `vue-router-best-practices`, `vue-testing-best-practices` |
 
-## Available Skills
+## 🛠️ Deep-Dive: Available Skills
 
-Some of the primary hand-crafted skills included are:
+Some of the primary hand-crafted skills included in our collections:
 
-- **`vue`**: Modern Vue 3 Composition API style with script setup
-- **`pinia`**: Pinia state management using Composition API
-- **`vue-options`**: Best practices for Vue Options API style
-- **`pinia-options`**: Clean patterns for Pinia options without Composition API
-- **`builderx_spa-api`**: Deep API fetching rules + class-based endpoints pattern overriding standard HTTP
-- **`builderx_spa-permission`**: Role-based access rules utilizing bitwise permissions
-- **`vue-antdv-tailwind`**: Guide to cleanly mixing Ant Design Vue components with Tailwind CSS
-- **`builderx_api-schemas`**: Core Ecto schema conventions including custom json serializers
-- **`builderx_api-controllers`**: Action fallback and standard tuple responses for Phoenix controllers
-- **`builderx_api-contexts`**: Ecto.Multi and Outbox pattern usage for complex transactions
+### Frontend & Vue Ecosystem
+- **`vue` / `vue-best-practices`**: Modern Vue 3 Composition API style with script setup, animation techniques, and advanced rendering.
+- **`pinia`**: State management using Composition API.
+- **`vue-options` / `pinia-options`**: The definitive best practices for organizations still leveraging the powerful Vue Options API style.
+- **`vue-router-best-practices`**: Avoid navigation infinite loops and lifecycle gotchas.
+- **`vue-testing-best-practices`**: Blackbox testing, Vitest setups, and E2E Playwright.
 
-## Generate Your Own Skills
+### Advanced Architectural Patterns
+- **`builderx_spa-api`**: Deep API fetching rules + class-based endpoints pattern overriding standard HTTP.
+- **`builderx_spa-permission`**: Role-based access rules utilizing bitwise permissions.
+- **`vue-antdv-tailwind`**: The definitive guide to cleanly mixing Ant Design Vue components with Tailwind CSS utility classes.
 
-Fork or clone this repository to create your own skill collection.
+### Backend Mastery (Elixir / Phoenix)
+- **`builderx_api-schemas`**: Core Ecto schema conventions including custom json serializers.
+- **`builderx_api-controllers`**: Action fallback and standard tuple responses for Phoenix controllers.
+- **`builderx_api-contexts`**: Ecto.Multi and Outbox pattern usage for complex multi-step transactions.
 
-1. Clone the repo:
+---
+
+## ⚙️ Generate & Manage Your Own Skills
+
+Want to build your own AI knowledge base? Fork or clone this repository to start creating your team's custom skill collection.
+
+1. **Clone the repo:**
    ```bash
    git clone https://github.com/vuluu2k/skills
    cd skills
    npm install
    ```
 
-2. Update `meta.ts` with your own projects and sources.
+2. **Update `meta.ts`** with your own projects and sources.
 
-3. Add new submodules:
+3. **Use the powerful CLI** to manage everything:
    ```bash
-   npm start init
+   npm start              # Open the interactive menu
+   npm start install      # Install skill collections to a target project
+   npm start init         # Clone tracked submodules from meta.ts
+   npm start sync         # Pull updates + sync vendor skills
+   npm start check        # Check for available remote updates
+   npm start cleanup      # Remove stale skills not listed in meta.ts
    ```
 
-4. Sync vendor skills:
-   ```bash
-   npm start sync
-   ```
-
-5. Ask your AI agent to generate skills:
+4. **Ask your AI agent to generate skills:**
    > "Generate skills for `<project>` based on the docs in `sources/<project>/`"
 
-See [SKILL_GUIDE.md](SKILL_GUIDE.md) for detailed guidelines on writing skills.
+See [SKILL_GUIDE.md](SKILL_GUIDE.md) for detailed guidelines on writing the perfect AI skills.
 
-## Management CLI
-
-```bash
-npm start              # Interactive menu
-npm start install      # Install skill collections to a target project
-npm start init         # Clone submodules from meta.ts
-npm start sync         # Pull updates + sync vendor skills
-npm start check        # Check for available updates
-npm start cleanup      # Remove skills not listed in meta.ts
-```
-
-## Structure
-
-```
-.
-├── meta.ts                     # Register all skills (sources, vendors, manual)
-├── SKILL_GUIDE.md              # Full guide for creating skills
-├── scripts/
-│   └── cli.ts                  # CLI tool for managing skills
-├── instructions/               # AI generation rules per skill
-│   ├── vue-options.md
-│   └── pinia-options.md
-├── sources/                    # Cloned OSS repos to generate skills from
-├── vendor/                     # Repos with existing skills to sync
-└── skills/
-    ├── vue-options/
-    └── pinia-options/
-```
-
-## License
-
-MIT
+---
+<div align="center">
+  <p>Built with ❤️ by vuluu2k. License: MIT</p>
+</div>

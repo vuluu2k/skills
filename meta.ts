@@ -52,6 +52,34 @@ export const vendors: Record<string, VendorSkillMeta> = {
       'vercel-cli-with-tokens': 'vercel-cli-with-tokens',
     },
   },
+  'slidev': {
+    official: true,
+    source: 'https://github.com/slidevjs/slidev',
+    skills: {
+      slidev: 'slidev',
+    },
+  },
+  'vueuse': {
+    official: true,
+    source: 'https://github.com/vueuse/vueuse',
+    skills: {
+      'vueuse-functions': 'vueuse-functions',
+    },
+  },
+  'tsdown': {
+    official: true,
+    source: 'https://github.com/rolldown/tsdown',
+    skills: {
+      tsdown: 'tsdown',
+    },
+  },
+  'turborepo': {
+    official: true,
+    source: 'https://github.com/vercel/turborepo',
+    skills: {
+      turborepo: 'turborepo',
+    },
+  },
 }
 
 export const manual = [
@@ -61,6 +89,7 @@ export const manual = [
   'vue',
   'builderx_spa-api',
   'builderx_spa-permission',
+  'builderx_spa-design',
   'vue-antdv-tailwind',
   'builderx_api-schemas',
   'builderx_api-controllers',
@@ -84,7 +113,7 @@ export const collections: Record<string, string[]> = {
     'pinia-options',
     'builderx_spa-api',
     'builderx_spa-permission',
-    'vue-antdv-tailwind'
+    'builderx_spa-design'
   ],
   'builderx_api': [
     'builderx_api-schemas',

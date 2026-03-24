@@ -389,14 +389,40 @@ async function cleanup(skipPrompt = false) {
   }
 }
 
-async function installSkills(targetCollectionNames: string[] = []) {
-  const spinner = p.spinner()
-
+function getAllCollections(): Record<string, string[]> {
   const allCollections: Record<string, string[]> = { ...collections }
   for (const [vendorName, config] of Object.entries(vendors)) {
     const vendorConfig = config as VendorConfig
-    allCollections[vendorName] = Object.values(vendorConfig.skills)
+    let vendorSkills: string[] = []
+    
+    if (vendorConfig.skills && Object.keys(vendorConfig.skills).length > 0) {
+      vendorSkills = Object.values(vendorConfig.skills)
+    } else {
+      const vendorPath = join(root, 'vendor', vendorName)
+      const vendorSkillsPath = join(vendorPath, 'skills')
+      const searchPath = existsSync(vendorSkillsPath) ? vendorSkillsPath : (existsSync(vendorPath) ? vendorPath : null)
+      
+      if (searchPath) {
+        const entries = readdirSync(searchPath, { withFileTypes: true })
+        for (const entry of entries) {
+          if (entry.isDirectory() && !entry.name.startsWith('.')) {
+            vendorSkills.push(entry.name)
+          }
+        }
+      }
+    }
+    
+    if (vendorSkills.length > 0) {
+      allCollections[vendorName] = vendorSkills
+    }
   }
+  return allCollections
+}
+
+async function installSkills(targetCollectionNames: string[] = []) {
+  const spinner = p.spinner()
+
+  const allCollections = getAllCollections()
 
   if (Object.keys(allCollections).length === 0) {
     p.log.warn('No collections or vendors defined in meta.ts')
@@ -661,32 +687,7 @@ async function findSkills(query?: string) {
   const allSkills = getExistingSkillNames()
   p.intro(`Search results for ${query ? `"${query}"` : 'all'}`)
   
-  const allCollections: Record<string, string[]> = { ...collections }
-  for (const [vendorName, config] of Object.entries(vendors)) {
-    const vendorConfig = config as VendorConfig
-    let vendorSkills: string[] = []
-    
-    if (vendorConfig.skills && Object.keys(vendorConfig.skills).length > 0) {
-      vendorSkills = Object.values(vendorConfig.skills)
-    } else {
-      const vendorPath = join(root, 'vendor', vendorName)
-      const vendorSkillsPath = join(vendorPath, 'skills')
-      const searchPath = existsSync(vendorSkillsPath) ? vendorSkillsPath : (existsSync(vendorPath) ? vendorPath : null)
-      
-      if (searchPath) {
-        const entries = readdirSync(searchPath, { withFileTypes: true })
-        for (const entry of entries) {
-          if (entry.isDirectory() && !entry.name.startsWith('.')) {
-            vendorSkills.push(entry.name)
-          }
-        }
-      }
-    }
-    
-    if (vendorSkills.length > 0) {
-      allCollections[vendorName] = vendorSkills
-    }
-  }
+  const allCollections = getAllCollections()
 
   let q = ''
   if (!query) {

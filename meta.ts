@@ -80,6 +80,15 @@ export const vendors: Record<string, VendorSkillMeta> = {
       turborepo: 'turborepo',
     },
   },
+  'next-skills': {
+    official: true,
+    source: 'https://github.com/vercel-labs/next-skills',
+    skills: {
+      'next-best-practices': 'next-best-practices',
+      'next-cache-components': 'next-cache-components',
+      'next-upgrade': 'next-upgrade',
+    },
+  }
 }
 
 export const manual = [

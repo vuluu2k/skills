@@ -4,6 +4,7 @@ import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import * as p from '@clack/prompts'
+import prompts from 'prompts'
 import { collections, manual, submodules, vendors } from '../meta.ts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -364,7 +365,7 @@ async function cleanup(skipPrompt = false) {
   }
 }
 
-async function installSkills() {
+async function installSkills(targetCollectionNames: string[] = []) {
   const spinner = p.spinner()
 
   const allCollections: Record<string, string[]> = { ...collections }
@@ -378,23 +379,33 @@ async function installSkills() {
     return
   }
 
-  const selectedCollectionNames = await p.multiselect({
-    message: 'Select collections to install (Space to select, Enter to confirm)',
-    options: Object.keys(allCollections).map(name => ({
-      value: name,
-      label: name,
-      hint: `${allCollections[name].length} skills`
-    }))
-  })
+  let selectedCollectionNames: string[] = []
 
-  if (p.isCancel(selectedCollectionNames)) {
-    p.cancel('Cancelled')
-    return
-  }
+  if (targetCollectionNames.length > 0) {
+    const invalid = targetCollectionNames.filter(name => !allCollections[name])
+    if (invalid.length > 0) {
+      p.log.error(`Collections not found: ${invalid.join(', ')}`)
+      return
+    }
+    selectedCollectionNames = targetCollectionNames
+  } else {
+    const response = await prompts({
+      type: 'autocompleteMultiselect',
+      name: 'selected',
+      message: 'Search and select collections to install (Space to select, Enter to confirm)',
+      choices: Object.keys(allCollections).map(name => ({
+        title: name,
+        value: name,
+        description: `${allCollections[name].length} skills`
+      }))
+    })
 
-  if (selectedCollectionNames.length === 0) {
-    p.log.warn('No collections selected')
-    return
+    if (!response.selected || response.selected.length === 0) {
+      p.log.warn('No collections selected (or canceled)')
+      return
+    }
+
+    selectedCollectionNames = response.selected
   }
 
   const targetProject = await p.text({
@@ -492,7 +503,7 @@ async function installSkills() {
   spinner.stop(`Installed ${successCount}/${selectedSkills.length} skills to target project`)
 }
 
-async function installSpecificSkills() {
+async function installSpecificSkills(targetSkillNames: string[] = []) {
   const spinner = p.spinner()
 
   const allSkills = getExistingSkillNames()
@@ -502,22 +513,32 @@ async function installSpecificSkills() {
     return
   }
 
-  const selectedSkills = await p.multiselect({
-    message: 'Select specific skills to install (Space to select, Enter to confirm)',
-    options: allSkills.map(name => ({
-      value: name,
-      label: name
-    }))
-  })
+  let selectedSkills: string[] = []
 
-  if (p.isCancel(selectedSkills)) {
-    p.cancel('Cancelled')
-    return
-  }
+  if (targetSkillNames.length > 0) {
+    const invalid = targetSkillNames.filter(name => !allSkills.includes(name))
+    if (invalid.length > 0) {
+      p.log.error(`Skills not found: ${invalid.join(', ')}`)
+      return
+    }
+    selectedSkills = targetSkillNames
+  } else {
+    const response = await prompts({
+      type: 'autocompleteMultiselect',
+      name: 'selected',
+      message: 'Search and select individual skills to install (Space to select, Enter to confirm)',
+      choices: allSkills.map(name => ({
+        title: name,
+        value: name
+      }))
+    })
 
-  if (selectedSkills.length === 0) {
-    p.log.warn('No skills selected')
-    return
+    if (!response.selected || response.selected.length === 0) {
+      p.log.warn('No skills selected (or canceled)')
+      return
+    }
+
+    selectedSkills = response.selected
   }
 
   const targetProject = await p.text({
@@ -612,10 +633,67 @@ async function installSpecificSkills() {
   spinner.stop(`Installed ${successCount}/${selectedSkills.length} skills to target project`)
 }
 
+async function findSkills(query?: string) {
+  const allSkills = getExistingSkillNames()
+  p.intro(`Search results for ${query ? `"${query}"` : 'all'}`)
+  
+  const allCollections: Record<string, string[]> = { ...collections }
+  for (const [vendorName, config] of Object.entries(vendors)) {
+    const vendorConfig = config as VendorConfig
+    allCollections[vendorName] = Object.values(vendorConfig.skills)
+  }
+
+  let q = ''
+  if (!query) {
+    const userInput = await p.text({
+      message: 'Enter keyword to search (leave empty to list all):',
+      placeholder: 'e.g. vue'
+    })
+    
+    if (p.isCancel(userInput)) {
+      p.cancel('Cancelled')
+      return
+    }
+    q = (userInput as string).toLowerCase()
+  } else {
+    q = query.toLowerCase()
+  }
+  
+  const matchedCollections = Object.keys(allCollections).filter(c => c.toLowerCase().includes(q))
+  if (matchedCollections.length > 0) {
+    p.log.success('📚 Collections found:')
+    for (const c of matchedCollections) {
+      p.log.message(`  - ${c} (${allCollections[c].length} skills) -> \`npx devskill install ${c}\``)
+    }
+  } else if (q) {
+    p.log.warn('No collections found matching query')
+  }
+
+  const matchedSkills = allSkills.filter(s => s.toLowerCase().includes(q))
+  if (matchedSkills.length > 0) {
+    p.log.success('🛠️  Individual Skills found:')
+    for (const s of matchedSkills) {
+      p.log.message(`  - ${s} -> \`npx devskill add ${s}\``)
+    }
+  } else if (q) {
+    p.log.warn('No individual skills found matching query')
+  }
+}
+
 async function main() {
   const args = process.argv.slice(2)
   const skipPrompt = args.includes('-y') || args.includes('--yes')
-  const command = args.find(arg => !arg.startsWith('-'))
+  
+  const positionalArgs = args.filter(arg => !arg.startsWith('-'))
+  const command = positionalArgs[0]
+  const targetNames = positionalArgs.slice(1)
+  const targetName = targetNames[0] // for finding
+
+  if (command === 'find') {
+    await findSkills(targetName)
+    p.outro('Done')
+    return
+  }
 
   if (command === 'init') {
     p.intro('Skills Manager - Init')
@@ -646,22 +724,24 @@ async function main() {
   }
 
   if (command === 'install') {
-    p.intro('Skills Manager - Install Groups')
-    await installSkills()
+    const namesJoined = targetNames.length > 0 ? ` (${targetNames.join(', ')})` : ''
+    p.intro(`Skills Manager - Install Groups${namesJoined}`)
+    await installSkills(targetNames)
     p.outro('Done')
     return
   }
 
   if (command === 'add') {
-    p.intro('Skills Manager - Add Specific Skills')
-    await installSpecificSkills()
+    const namesJoined = targetNames.length > 0 ? ` (${targetNames.join(', ')})` : ''
+    p.intro(`Skills Manager - Add Specific Skills${namesJoined}`)
+    await installSpecificSkills(targetNames)
     p.outro('Done')
     return
   }
 
   if (skipPrompt) {
     p.log.error('Command required when using -y flag')
-    p.log.info('Available commands: install, add, init, sync, check, cleanup')
+    p.log.info('Available commands: find, install, add, init, sync, check, cleanup')
     process.exit(1)
   }
 
@@ -672,6 +752,7 @@ async function main() {
     options: [
       { value: 'install', label: 'Install collections', hint: 'Copy entire skill collections to a local project' },
       { value: 'add', label: 'Add specific skills', hint: 'Choose individual skills to add to your project' },
+      { value: 'find', label: 'Find a skill or collection', hint: 'Search by keyword' },
       { value: 'sync', label: 'Sync submodules', hint: 'Pull latest and sync Type 2 skills' },
       { value: 'init', label: 'Init submodules', hint: 'Add new submodules from meta.ts' },
       { value: 'check', label: 'Check updates', hint: 'See available updates' },
@@ -690,6 +771,9 @@ async function main() {
       break
     case 'add':
       await installSpecificSkills()
+      break
+    case 'find':
+      await findSkills()
       break
     case 'init':
       await initSubmodules()

@@ -22,3 +22,6 @@
 [submodule "vendor/turborepo"]
 	path = vendor/turborepo
 	url = https://github.com/vercel/turborepo
+[submodule "vendor/next-skills"]
+	path = vendor/next-skills
+	url = https://github.com/vercel-labs/next-skills

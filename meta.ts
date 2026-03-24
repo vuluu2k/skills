@@ -118,6 +118,10 @@ export const collections: Record<string, string[]> = {
   'builderx_api': [
     'builderx_api-schemas',
     'builderx_api-controllers',
-    'builderx_api-contexts'
+    'builderx_api-contexts',
+    'builderx_api-kafka',
+    'builderx_api-redis',
+    'builderx_api-rabbitmq',
+    'builderx_api-mongodb',
   ]
 }

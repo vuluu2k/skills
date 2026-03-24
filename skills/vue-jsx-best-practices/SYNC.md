@@ -1,5 +1,5 @@
 # Sync Info
 
 - **Source:** `vendor/vuejs-ai/skills/vue-jsx-best-practices`
-- **Git SHA:** `f3dd1bf4d3ac78331bdc903e4519d561c538ca6a`
+- **Git SHA:** `9c4dd34bc22fa27730fabd2a573ea763ef02c8a0`
 - **Synced:** 2026-03-24

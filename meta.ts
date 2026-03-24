@@ -134,7 +134,8 @@ export const collections: Record<string, string[]> = {
     'pinia-options',
     'builderx_spa-api',
     'builderx_spa-permission',
-    'builderx_spa-design'
+    'builderx_spa-design',
+    'git-commit',
   ],
   'builderx_api': [
     'builderx_api-schemas',
@@ -144,5 +145,6 @@ export const collections: Record<string, string[]> = {
     'builderx_api-redis',
     'builderx_api-rabbitmq',
     'builderx_api-mongodb',
+    'git-commit',
   ]
 }

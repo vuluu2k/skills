@@ -5,9 +5,19 @@
     "problem": "Vấn đề",
     "solution": "Giải pháp",
     "why_devskill": "Sức mạnh thực sự của devskill",
-    "installation": "Cài đặt đơn giản",
-    "collections": "Thư viện kỹ năng (Collections)",
-    "footer": "Thiết kế với ❤️ bởi vuluu2k. Giấy phép: MIT"
+    "installation": "Cài đặt & Trải nghiệm",
+    "collections": "Bộ sưu tập Skills",
+    "footer": "© 2026 devskill. Xây dựng bộ não mạnh mẽ nhất cho AI của bạn.",
+    "contribute_title": "Tự Xây Dựng & Đóng Góp",
+    "contribute_desc": "Đội ngũ của bạn có quy chuẩn code riêng? Đừng lo, bạn có thể tự build bộ não AI chuyên biệt cho team! Nếu bạn biết một framework hay best-practices nào đỉnh cao, hãy tạo Issue trên GitHub để mình thêm vào devskill nhé.",
+    "contribute_cta_issue": "💡 Gợi ý Skills (Tạo Issue)",
+    "contribute_cta_build": "🛠️ Tự Build Skills",
+    "architecture_title": "Cấu trúc Thư mục Thông minh",
+    "architecture_desc": "Không chỉ là một CLI, devskill cung cấp vòng đời quản lý tri thức (Knowledge Base) phân tầng rõ rệt.",
+    "sources_title": "Nguồn gốc (sources/)",
+    "sources_desc": "Nơi chứa tài liệu gốc, mã nguồn mẫu, official documentation (thường track dưới dạng git submodules). AI sẽ đọc và đọc hiểu tự động để trích xuất các quy chuẩn ra file SKILL.md.",
+    "vendor_title": "Cộng đồng (vendor/)",
+    "vendor_desc": "Kho lưu trữ các skill chất lượng cao được chia sẻ từ cộng đồng hoặc tổ chức khác. Chỉ cần 1 lệnh 'npm start sync' để cập nhật liên tục mọi thay đổi về máy!"
   },
   "Hero": {
     "badge": "🚀 MỚI: devskill v2.0",

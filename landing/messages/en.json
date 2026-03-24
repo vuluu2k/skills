@@ -5,9 +5,19 @@
     "problem": "The Problem",
     "solution": "The Solution",
     "why_devskill": "The power of devskill",
-    "installation": "Simple Installation",
+    "installation": "Installation & Quick Start",
     "collections": "Skill Collections",
-    "footer": "Built with ❤️ by vuluu2k. License: MIT"
+    "footer": "© 2026 devskill. Empower your AI assistants.",
+    "contribute_title": "Build & Contribute",
+    "contribute_desc": "Does your team have unique coding standards? You can easily build a completely customized AI brain! If you have any awesome frameworks or best-practices you'd like to share, create an Issue on GitHub so we can add it to devskill.",
+    "contribute_cta_issue": "💡 Suggest a Skill",
+    "contribute_cta_build": "🛠️ Build Your Own",
+    "architecture_title": "Smart Directory Architecture",
+    "architecture_desc": "More than just a CLI, devskill provides a clearly stratified Knowledge Base management pipeline.",
+    "sources_title": "The Root (sources/)",
+    "sources_desc": "The raw data layer. Stores official documentation, template repos, and guidelines (often tracked as git submodules). AI reads this to generate your SKILL.md rules.",
+    "vendor_title": "Submodules (vendor/)",
+    "vendor_desc": "Your external dependency layer. Automatically syncs community or third-party high-quality skills into your project. Keep them fresh with a single 'npm start sync'."
   },
   "Hero": {
     "badge": "🚀 NEW: devskill v2.0",

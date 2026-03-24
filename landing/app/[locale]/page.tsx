@@ -76,10 +76,10 @@ export default function LandingPage() {
             <h1 className="text-6xl md:text-8xl font-extrabold mb-8 tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-white via-zinc-200 to-zinc-500 pb-2">
               {t('title')}
             </h1>
-            <p className="text-xl md:text-2xl text-zinc-300 max-w-3xl mx-auto mb-12 leading-relaxed text-balance font-light">
+            <p className="text-xl md:text-2xl text-zinc-300 max-w-5xl mx-auto mb-12 leading-relaxed text-balance font-light">
               {t('subtitle')}
             </p>
-            <p className="text-lg text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed text-balance">
+            <p className="text-lg text-zinc-400 max-w-4xl mx-auto mb-12 leading-relaxed text-balance">
               {h('description')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto sm:max-w-none">
@@ -268,6 +268,72 @@ export default function LandingPage() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Architecture Section */}
+        <section id="architecture" className="container mx-auto px-4 mb-40 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-white">{t('architecture_title')}</h2>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-400 to-rose-500 mx-auto rounded-full mb-6" />
+            <p className="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">{t('architecture_desc')}</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <Card className="bg-zinc-900/60 border-cyan-400/20 backdrop-blur-xl hover:bg-zinc-900/80 hover:border-cyan-400/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-400/20 transition-all duration-300 group overflow-hidden relative">
+              <div className="absolute top-0 right-0 p-32 bg-cyan-400/5 rounded-full blur-[80px] -mr-16 -mt-16 transition-opacity opacity-0 group-hover:opacity-100" />
+              <CardHeader className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-cyan-400/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-cyan-400/20">
+                  <Database className="w-7 h-7 text-cyan-400" />
+                </div>
+                <CardTitle className="text-2xl text-white font-bold tracking-tight">{t('sources_title')}</CardTitle>
+              </CardHeader>
+              <CardContent className="relative z-10">
+                <p className="text-zinc-300 leading-relaxed text-base">{t('sources_desc')}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900/60 border-rose-500/20 backdrop-blur-xl hover:bg-zinc-900/80 hover:border-rose-500/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300 group overflow-hidden relative">
+              <div className="absolute top-0 right-0 p-32 bg-rose-500/5 rounded-full blur-[80px] -mr-16 -mt-16 transition-opacity opacity-0 group-hover:opacity-100" />
+              <CardHeader className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-rose-500/20">
+                  <Boxes className="w-7 h-7 text-rose-500" />
+                </div>
+                <CardTitle className="text-2xl text-white font-bold tracking-tight">{t('vendor_title')}</CardTitle>
+              </CardHeader>
+              <CardContent className="relative z-10">
+                <p className="text-zinc-300 leading-relaxed text-base">{t('vendor_desc')}</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Contribute Section */}
+        <section id="contribute" className="container mx-auto px-4 mb-40 text-center relative z-10">
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-zinc-900/80 to-zinc-950 border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-32 bg-rose-500/10 rounded-full blur-[100px] -mr-16 -mt-16 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 p-32 bg-cyan-400/10 rounded-full blur-[100px] -ml-16 -mb-16 pointer-events-none" />
+            
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight text-white">{t('contribute_title')}</h2>
+            <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+              {t('contribute_desc')}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a 
+                href="https://github.com/vuluu2k/skills/issues"
+                target="_blank"
+                className="px-8 py-4 rounded-xl font-bold bg-white text-zinc-950 hover:bg-zinc-200 transition-colors shadow-lg shadow-white/10"
+              >
+                {t('contribute_cta_issue')}
+              </a>
+              <a 
+                href="https://github.com/vuluu2k/skills"
+                target="_blank"
+                className="px-8 py-4 rounded-xl font-bold bg-zinc-800 text-white hover:bg-zinc-700 border border-white/10 transition-colors"
+              >
+                {t('contribute_cta_build')}
+              </a>
+            </div>
           </div>
         </section>
       </main>

@@ -4,6 +4,16 @@ export interface VendorSkillMeta {
   skills?: Record<string, string> // sourceSkillName -> outputSkillName. If omitted, auto-discovers all subdirectories.
 }
 
+export interface RuleMeta {
+  file: string // path relative to repo root, e.g. 'rules/vue-style.md'
+  description?: string
+}
+
+export interface WorkflowMeta {
+  file: string // path relative to repo root, e.g. 'workflows/git-flow.md'
+  description?: string
+}
+
 /**
  * Repositories to clone as submodules and generate skills from their docs.
  * After cloning, read docs and generate skills manually into skills/{name}/
@@ -147,4 +157,41 @@ export const collections: Record<string, string[]> = {
     'builderx_api-mongodb',
     'git-commit',
   ]
+}
+
+/**
+ * Individual rule files (markdown) to install into AI tool rule directories.
+ * Format: { 'rule-name': { file: 'rules/rule-name.md', description: '...' } }
+ */
+export const rules: Record<string, RuleMeta> = {
+  'vue-style': {
+    file: 'rules/vue-style.md',
+    description: 'Vue 3 coding style and conventions',
+  },
+  'typescript-strict': {
+    file: 'rules/typescript-strict.md',
+    description: 'Strict TypeScript conventions',
+  },
+}
+
+/**
+ * Individual workflow files (markdown) to install into AI tool workflow directories.
+ * Format: { 'workflow-name': { file: 'workflows/workflow-name.md', description: '...' } }
+ */
+export const workflows: Record<string, WorkflowMeta> = {
+  'git-flow': {
+    file: 'workflows/git-flow.md',
+    description: 'Feature branch git workflow',
+  },
+}
+
+/**
+ * Grouped collections of rules + workflows per project.
+ * Use `npm start rules` or `npm start workflows` to install a batch.
+ */
+export const ruleCollections: Record<string, { rules?: string[], workflows?: string[] }> = {
+  'builderx_spa': {
+    rules: ['vue-style', 'typescript-strict'],
+    workflows: ['git-flow'],
+  },
 }

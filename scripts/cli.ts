@@ -5,7 +5,7 @@ import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import * as p from '@clack/prompts'
 import prompts from 'prompts'
-import { collections, manual, submodules, vendors } from '../meta.ts'
+import { collections, manual, ruleCollections, rules, submodules, vendors, workflows } from '../meta.ts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
@@ -726,7 +726,242 @@ async function findSkills(query?: string) {
   }
 }
 
+// ─── Rules & Workflows ────────────────────────────────────────────────────────
+
+function getExistingRuleNames(): string[] {
+  return Object.keys(rules)
+}
+
+function getExistingWorkflowNames(): string[] {
+  return Object.keys(workflows)
+}
+
+async function installRules(targetRuleNames: string[] = []) {
+  const spinner = p.spinner()
+
+  const allRules = getExistingRuleNames()
+  if (allRules.length === 0) {
+    p.log.warn('No rules defined in meta.ts')
+    return
+  }
+
+  let selectedRules: string[] = []
+
+  if (targetRuleNames.length > 0) {
+    const invalid = targetRuleNames.filter(n => !allRules.includes(n))
+    if (invalid.length > 0) {
+      p.log.error(`Rules not found: ${invalid.join(', ')}`)
+      return
+    }
+    selectedRules = targetRuleNames
+  }
+  else {
+    const response = await prompts({
+      type: 'autocompleteMultiselect',
+      name: 'selected',
+      message: 'Select rules to install (Space to select, Enter to confirm)',
+      choices: allRules.map(name => ({
+        title: name,
+        value: name,
+        description: rules[name].description ?? '',
+      })),
+    })
+    if (!response.selected || response.selected.length === 0) {
+      p.log.warn('No rules selected (or canceled)')
+      return
+    }
+    selectedRules = response.selected
+  }
+
+  const targetProject = await p.text({
+    message: 'Enter target project directory path',
+    initialValue: process.cwd(),
+    placeholder: process.cwd(),
+    validate: value => {
+      if (!value) return 'Path is required'
+      if (!existsSync(value)) return 'Directory does not exist'
+    },
+  })
+  if (p.isCancel(targetProject)) { p.cancel('Cancelled'); return }
+
+  const toolChoice = await p.select({
+    message: 'Which AI tool are you installing rules for?',
+    options: [
+      { value: '.cursor/rules', label: 'Cursor (.cursor/rules/)' },
+      { value: '.windsurf/rules', label: 'Windsurf (.windsurf/rules/)' },
+      { value: '.claude', label: 'Claude Code (.claude/)' },
+      { value: '.agents/rules', label: 'Antigravity (.agents/rules/)' },
+      { value: 'rules', label: 'Generic (rules/)' },
+      { value: 'custom', label: 'Custom path...' },
+    ],
+  })
+  if (p.isCancel(toolChoice)) { p.cancel('Cancelled'); return }
+
+  let rulesDirName = toolChoice as string
+  if (toolChoice === 'custom') {
+    const customDir = await p.text({ message: 'Enter custom path:', initialValue: 'rules', placeholder: 'rules' })
+    if (p.isCancel(customDir)) { p.cancel('Cancelled'); return }
+    rulesDirName = customDir as string
+  }
+
+  const targetDir = join(targetProject as string, rulesDirName)
+  if (!existsSync(targetDir)) mkdirSync(targetDir, { recursive: true })
+
+  spinner.start(`Installing ${selectedRules.length} rule(s) to ${targetDir}...`)
+  let successCount = 0
+  for (const ruleName of selectedRules) {
+    const meta = rules[ruleName]
+    const srcFile = join(root, meta.file)
+    if (!existsSync(srcFile)) {
+      p.log.warn(`Rule file not found: ${meta.file}`)
+      continue
+    }
+    const destFile = join(targetDir, `${ruleName}.md`)
+    cpSync(srcFile, destFile)
+    successCount++
+  }
+  spinner.stop(`Installed ${successCount}/${selectedRules.length} rule(s)`)
+}
+
+async function installWorkflows(targetWorkflowNames: string[] = []) {
+  const spinner = p.spinner()
+
+  const allWorkflows = getExistingWorkflowNames()
+  if (allWorkflows.length === 0) {
+    p.log.warn('No workflows defined in meta.ts')
+    return
+  }
+
+  let selectedWorkflows: string[] = []
+
+  if (targetWorkflowNames.length > 0) {
+    const invalid = targetWorkflowNames.filter(n => !allWorkflows.includes(n))
+    if (invalid.length > 0) {
+      p.log.error(`Workflows not found: ${invalid.join(', ')}`)
+      return
+    }
+    selectedWorkflows = targetWorkflowNames
+  }
+  else {
+    const response = await prompts({
+      type: 'autocompleteMultiselect',
+      name: 'selected',
+      message: 'Select workflows to install (Space to select, Enter to confirm)',
+      choices: allWorkflows.map(name => ({
+        title: name,
+        value: name,
+        description: workflows[name].description ?? '',
+      })),
+    })
+    if (!response.selected || response.selected.length === 0) {
+      p.log.warn('No workflows selected (or canceled)')
+      return
+    }
+    selectedWorkflows = response.selected
+  }
+
+  const targetProject = await p.text({
+    message: 'Enter target project directory path',
+    initialValue: process.cwd(),
+    placeholder: process.cwd(),
+    validate: value => {
+      if (!value) return 'Path is required'
+      if (!existsSync(value)) return 'Directory does not exist'
+    },
+  })
+  if (p.isCancel(targetProject)) { p.cancel('Cancelled'); return }
+
+  const toolChoice = await p.select({
+    message: 'Which AI tool are you installing workflows for?',
+    options: [
+      { value: '.agents/workflows', label: 'Antigravity (.agents/workflows/)' },
+      { value: '.cursor/workflows', label: 'Cursor (.cursor/workflows/)' },
+      { value: '.windsurf/workflows', label: 'Windsurf (.windsurf/workflows/)' },
+      { value: '.claude/workflows', label: 'Claude Code (.claude/workflows/)' },
+      { value: 'workflows', label: 'Generic (workflows/)' },
+      { value: 'custom', label: 'Custom path...' },
+    ],
+  })
+  if (p.isCancel(toolChoice)) { p.cancel('Cancelled'); return }
+
+  let workflowsDirName = toolChoice as string
+  if (toolChoice === 'custom') {
+    const customDir = await p.text({ message: 'Enter custom path:', initialValue: 'workflows', placeholder: 'workflows' })
+    if (p.isCancel(customDir)) { p.cancel('Cancelled'); return }
+    workflowsDirName = customDir as string
+  }
+
+  const targetDir = join(targetProject as string, workflowsDirName)
+  if (!existsSync(targetDir)) mkdirSync(targetDir, { recursive: true })
+
+  spinner.start(`Installing ${selectedWorkflows.length} workflow(s) to ${targetDir}...`)
+  let successCount = 0
+  for (const workflowName of selectedWorkflows) {
+    const meta = workflows[workflowName]
+    const srcFile = join(root, meta.file)
+    if (!existsSync(srcFile)) {
+      p.log.warn(`Workflow file not found: ${meta.file}`)
+      continue
+    }
+    const destFile = join(targetDir, `${workflowName}.md`)
+    cpSync(srcFile, destFile)
+    successCount++
+  }
+  spinner.stop(`Installed ${successCount}/${selectedWorkflows.length} workflow(s)`)
+}
+
+async function findRulesAndWorkflows(query?: string) {
+  p.intro(`Search results for ${query ? `"${query}"` : 'all'}`)
+
+  let q = ''
+  if (!query) {
+    const userInput = await p.text({
+      message: 'Enter keyword to search (leave empty to list all):',
+      placeholder: 'e.g. vue',
+    })
+    if (p.isCancel(userInput)) { p.cancel('Cancelled'); return }
+    q = (userInput as string).toLowerCase()
+  }
+  else {
+    q = query.toLowerCase()
+  }
+
+  const matchedRuleCollections = Object.keys(ruleCollections).filter(c => c.toLowerCase().includes(q))
+  if (matchedRuleCollections.length > 0) {
+    p.log.success('📦 Rule Collections found:')
+    for (const c of matchedRuleCollections) {
+      const col = ruleCollections[c]
+      const rulesCount = col.rules?.length ?? 0
+      const wfCount = col.workflows?.length ?? 0
+      p.log.message(`  - ${c} (${rulesCount} rules, ${wfCount} workflows)`)
+    }
+  }
+
+  const matchedRules = Object.keys(rules).filter(r => r.toLowerCase().includes(q))
+  if (matchedRules.length > 0) {
+    p.log.success('📋 Rules found:')
+    for (const r of matchedRules) {
+      p.log.message(`  - ${r}: ${rules[r].description ?? ''} -> \`npx devskill rules ${r}\``)
+    }
+  }
+  else if (q) {
+    p.log.warn('No rules found matching query')
+  }
+
+  const matchedWorkflows = Object.keys(workflows).filter(w => w.toLowerCase().includes(q))
+  if (matchedWorkflows.length > 0) {
+    p.log.success('⚙️  Workflows found:')
+    for (const w of matchedWorkflows) {
+      p.log.message(`  - ${w}: ${workflows[w].description ?? ''} -> \`npx devskill workflows ${w}\``)
+    }
+  }
+  else if (q) {
+    p.log.warn('No workflows found matching query')
+  }
+}
+
 async function main() {
+
   const args = process.argv.slice(2)
   const skipPrompt = args.includes('-y') || args.includes('--yes')
   
@@ -785,9 +1020,31 @@ async function main() {
     return
   }
 
+  if (command === 'rules') {
+    const namesJoined = targetNames.length > 0 ? ` (${targetNames.join(', ')})` : ''
+    p.intro(`Skills Manager - Rules${namesJoined}`)
+    await installRules(targetNames)
+    p.outro('Done')
+    return
+  }
+
+  if (command === 'workflows') {
+    const namesJoined = targetNames.length > 0 ? ` (${targetNames.join(', ')})` : ''
+    p.intro(`Skills Manager - Workflows${namesJoined}`)
+    await installWorkflows(targetNames)
+    p.outro('Done')
+    return
+  }
+
+  if (command === 'find-rules') {
+    await findRulesAndWorkflows(targetName)
+    p.outro('Done')
+    return
+  }
+
   if (skipPrompt) {
     p.log.error('Command required when using -y flag')
-    p.log.info('Available commands: find, install, add, init, sync, check, cleanup')
+    p.log.info('Available commands: find, install, add, rules, workflows, find-rules, init, sync, check, cleanup')
     process.exit(1)
   }
 
@@ -796,10 +1053,13 @@ async function main() {
   const action = await p.select({
     message: 'What would you like to do?',
     options: [
-      { value: 'install', label: 'Install collections', hint: 'Copy entire skill collections to a local project' },
+      { value: 'install', label: 'Install skill collections', hint: 'Copy entire skill collections to a local project' },
       { value: 'add', label: 'Add specific skills', hint: 'Choose individual skills to add to your project' },
       { value: 'find', label: 'Find a skill or collection', hint: 'Search by keyword' },
-      { value: 'sync', label: 'Sync submodules', hint: 'Pull latest and sync Type 2 skills' },
+      { value: 'rules', label: 'Install rules', hint: 'Copy rule files to your AI tool rules directory' },
+      { value: 'workflows', label: 'Install workflows', hint: 'Copy workflow files to your AI tool workflows directory' },
+      { value: 'find-rules', label: 'Find rules or workflows', hint: 'Search rules/workflows by keyword' },
+      { value: 'sync', label: 'Sync submodules', hint: 'Pull latest and sync vendor skills' },
       { value: 'init', label: 'Init submodules', hint: 'Add new submodules from meta.ts' },
       { value: 'check', label: 'Check updates', hint: 'See available updates' },
       { value: 'cleanup', label: 'Cleanup', hint: 'Remove skills not listed in meta.ts' },
@@ -832,6 +1092,15 @@ async function main() {
       break
     case 'cleanup':
       await cleanup()
+      break
+    case 'rules':
+      await installRules()
+      break
+    case 'workflows':
+      await installWorkflows()
+      break
+    case 'find-rules':
+      await findRulesAndWorkflows()
       break
   }
 

@@ -1,0 +1,32 @@
+{
+  "Index": {
+    "title": "Nâng cấp bộ não AI của bạn",
+    "subtitle": "Trang bị cho Cursor, Windsurf, Cline, Antigravity, Claude Code, Codex, GitHub Copilot và các AI Agent siêu năng lực lập trình chuyên sâu chỉ với một câu lệnh.",
+    "problem": "Vấn đề",
+    "solution": "Giải pháp",
+    "why_devskill": "Sức mạnh thực sự của devskill",
+    "installation": "Cài đặt đơn giản",
+    "collections": "Thư viện kỹ năng (Collections)",
+    "footer": "Thiết kế với ❤️ bởi vuluu2k. Giấy phép: MIT"
+  },
+  "Hero": {
+    "badge": "🚀 MỚI: devskill v2.0",
+    "description": "Không cần thiết lập rườm rà. Chọn mâm đồ nghề (framework) yêu thích của bạn từ CLI tương tác và để devskill bơm trực tiếp các quy chuẩn dự án (SKILL.md) vào não AI.",
+    "cta": "Khám phá GitHub Skills",
+    "install_cmd": "npx devskill"
+  },
+  "Features": {
+    "onboarding": {
+      "title": "Tích hợp tức thì",
+      "desc": "Mở CLI trực quan lên, click chọn framework, và kiến thức sẽ được đẩy thẳng vào thư mục .agents/skills của bạn."
+    },
+    "accuracy": {
+      "title": "Code chuẩn như Senior",
+      "desc": "Các quy định khắt khe nhất từ cấu trúc Vue đến Phoenix Ecto đều được đúc kết sắc nét để AI của bạn không bao giờ code sai pattern."
+    },
+    "frictionless": {
+      "title": "Cài đặt & Cập nhật 1 chạm",
+      "desc": "Với npx devskill, trải nghiệm nâng cấp sức mạnh AI của bạn chưa bao giờ nhanh gọn và phong cách đến thế."
+    }
+  }
+}

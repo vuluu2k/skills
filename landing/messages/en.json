@@ -1,0 +1,32 @@
+{
+  "Index": {
+    "title": "Upgrade Your AI's Brain",
+    "subtitle": "Equip Cursor, Windsurf, Cline, Antigravity, Claude Code, Codex, GitHub Copilot and other AI Agents with expert programming superpowers via a single interactive prompt.",
+    "problem": "The Problem",
+    "solution": "The Solution",
+    "why_devskill": "The power of devskill",
+    "installation": "Simple Installation",
+    "collections": "Skill Collections",
+    "footer": "Built with ❤️ by vuluu2k. License: MIT"
+  },
+  "Hero": {
+    "badge": "🚀 NEW: devskill v2.0",
+    "description": "Skip the tedious setup. Pick your favorite tech stacks from our interactive CLI, and let devskill inject specialized project guidelines (SKILL.md) directly into your AI.",
+    "cta": "Explore GitHub Skills",
+    "install_cmd": "npx devskill"
+  },
+  "Features": {
+    "onboarding": {
+      "title": "Instant Integration",
+      "desc": "Launch the visual CLI, select frameworks, and watch context stream directly into your .agents/skills folder."
+    },
+    "accuracy": {
+      "title": "Senior-Level Quality",
+      "desc": "From deep Vue patterns to strict Phoenix Ecto rules, your AI gets zero-hallucination context to write code the right way."
+    },
+    "frictionless": {
+      "title": "1-Tap Install & Update",
+      "desc": "Using npx devskill, adding superpowers to your AI has never been faster or looked this good."
+    }
+  }
+}

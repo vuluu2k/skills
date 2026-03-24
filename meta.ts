@@ -1,7 +1,7 @@
 export interface VendorSkillMeta {
   official?: boolean
   source: string
-  skills: Record<string, string> // sourceSkillName -> outputSkillName
+  skills?: Record<string, string> // sourceSkillName -> outputSkillName. If omitted, auto-discovers all subdirectories.
 }
 
 /**
@@ -88,6 +88,14 @@ export const vendors: Record<string, VendorSkillMeta> = {
       'next-cache-components': 'next-cache-components',
       'next-upgrade': 'next-upgrade',
     },
+  },
+  'anthropics': {
+    official: true,
+    source: 'https://github.com/anthropics/skills',
+  },
+  'shacdn-ui': {
+    official: true,
+    source: 'https://github.com/shadcn-ui/ui',
   }
 }
 

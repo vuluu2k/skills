@@ -64,7 +64,7 @@ interface Project {
 
 interface VendorConfig {
   source: string
-  skills: Record<string, string>
+  skills?: Record<string, string>
 }
 
 async function initSubmodules(skipPrompt = false) {
@@ -188,17 +188,39 @@ async function syncSubmodules() {
       continue
     }
 
-    if (!existsSync(vendorSkillsPath)) {
-      p.log.warn(`No skills directory in vendor/${vendorName}/skills/`)
+    let skillsToSync: Record<string, string> = {}
+    
+    if (vendorConfig.skills && Object.keys(vendorConfig.skills).length > 0) {
+      if (!existsSync(vendorSkillsPath)) {
+        p.log.warn(`No skills directory in vendor/${vendorName}/skills/`)
+        continue
+      }
+      skillsToSync = vendorConfig.skills
+    } else {
+      const searchPath = existsSync(vendorSkillsPath) ? vendorSkillsPath : vendorPath
+      if (existsSync(searchPath)) {
+         const entries = readdirSync(searchPath, { withFileTypes: true })
+         for (const entry of entries) {
+           if (entry.isDirectory() && !entry.name.startsWith('.')) {
+             skillsToSync[entry.name] = entry.name
+           }
+         }
+      }
+    }
+
+    if (Object.keys(skillsToSync).length === 0) {
+      p.log.warn(`No skills found or mapped for vendor: ${vendorName}`)
       continue
     }
 
-    for (const [sourceSkillName, outputSkillName] of Object.entries(vendorConfig.skills)) {
-      const sourceSkillPath = join(vendorSkillsPath, sourceSkillName)
+    for (const [sourceSkillName, outputSkillName] of Object.entries(skillsToSync)) {
+      const sourceSkillPath = existsSync(vendorSkillsPath) 
+        ? join(vendorSkillsPath, sourceSkillName) 
+        : join(vendorPath, sourceSkillName)
       const outputPath = join(root, 'skills', outputSkillName)
 
       if (!existsSync(sourceSkillPath)) {
-        p.log.warn(`Skill not found: vendor/${vendorName}/skills/${sourceSkillName}`)
+        p.log.warn(`Skill not found: ${sourceSkillPath}`)
         continue
       }
 
@@ -277,7 +299,7 @@ async function checkUpdates() {
     const behind = execSafe('git rev-list HEAD..@{u} --count', path)
     const count = behind ? Number.parseInt(behind) : 0
     if (count > 0) {
-      const skillNames = Object.values(vendorConfig.skills).join(', ')
+      const skillNames = vendorConfig.skills ? Object.values(vendorConfig.skills).join(', ') : 'all'
       updates.push({ name: `${name} (${skillNames})`, type: 'vendor', behind: count })
     }
   }
@@ -299,8 +321,10 @@ function getExpectedSkillNames(): Set<string> {
     expected.add(name)
   for (const config of Object.values(vendors)) {
     const vendorConfig = config as VendorConfig
-    for (const outputName of Object.values(vendorConfig.skills))
-      expected.add(outputName)
+    if (vendorConfig.skills) {
+      for (const outputName of Object.values(vendorConfig.skills))
+        expected.add(outputName)
+    }
   }
   for (const name of manual)
     expected.add(name)
@@ -640,7 +664,28 @@ async function findSkills(query?: string) {
   const allCollections: Record<string, string[]> = { ...collections }
   for (const [vendorName, config] of Object.entries(vendors)) {
     const vendorConfig = config as VendorConfig
-    allCollections[vendorName] = Object.values(vendorConfig.skills)
+    let vendorSkills: string[] = []
+    
+    if (vendorConfig.skills && Object.keys(vendorConfig.skills).length > 0) {
+      vendorSkills = Object.values(vendorConfig.skills)
+    } else {
+      const vendorPath = join(root, 'vendor', vendorName)
+      const vendorSkillsPath = join(vendorPath, 'skills')
+      const searchPath = existsSync(vendorSkillsPath) ? vendorSkillsPath : (existsSync(vendorPath) ? vendorPath : null)
+      
+      if (searchPath) {
+        const entries = readdirSync(searchPath, { withFileTypes: true })
+        for (const entry of entries) {
+          if (entry.isDirectory() && !entry.name.startsWith('.')) {
+            vendorSkills.push(entry.name)
+          }
+        }
+      }
+    }
+    
+    if (vendorSkills.length > 0) {
+      allCollections[vendorName] = vendorSkills
+    }
   }
 
   let q = ''

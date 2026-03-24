@@ -25,3 +25,9 @@
 [submodule "vendor/next-skills"]
 	path = vendor/next-skills
 	url = https://github.com/vercel-labs/next-skills
+[submodule "vendor/shacdn-ui"]
+	path = vendor/shacdn-ui
+	url = https://github.com/shadcn-ui/ui
+[submodule "vendor/anthropics"]
+	path = vendor/anthropics
+	url = https://github.com/anthropics/skills

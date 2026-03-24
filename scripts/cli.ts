@@ -379,7 +379,7 @@ async function installSkills() {
   }
 
   const selectedCollectionNames = await p.multiselect({
-    message: 'Select collections to install',
+    message: 'Select collections to install (Space to select, Enter to confirm)',
     options: Object.keys(allCollections).map(name => ({
       value: name,
       label: name,
@@ -468,6 +468,102 @@ async function installSkills() {
   spinner.stop(`Installed ${successCount}/${selectedSkills.length} skills to target project`)
 }
 
+async function installSpecificSkills() {
+  const spinner = p.spinner()
+  
+  const allSkills = getExistingSkillNames()
+
+  if (allSkills.length === 0) {
+    p.log.warn('No skills found in skills directory. Try running init or sync first.')
+    return
+  }
+
+  const selectedSkills = await p.multiselect({
+    message: 'Select specific skills to install (Space to select, Enter to confirm)',
+    options: allSkills.map(name => ({
+      value: name,
+      label: name
+    }))
+  })
+
+  if (p.isCancel(selectedSkills)) {
+    p.cancel('Cancelled')
+    return
+  }
+
+  if (selectedSkills.length === 0) {
+    p.log.warn('No skills selected')
+    return
+  }
+
+  const targetProject = await p.text({
+    message: 'Enter target project directory path (relative or absolute)',
+    initialValue: process.cwd(),
+    placeholder: process.cwd(),
+    validate: (value) => {
+      if (!value) return 'Path is required'
+      if (!existsSync(value)) return 'Directory does not exist'
+    }
+  })
+
+  if (p.isCancel(targetProject)) {
+    p.cancel('Cancelled')
+    return
+  }
+
+  const skillsDirName = await p.text({
+    message: 'Name of the skills directory inside target project?',
+    initialValue: 'skills',
+    placeholder: 'skills'
+  })
+
+  if (p.isCancel(skillsDirName)) {
+    p.cancel('Cancelled')
+    return
+  }
+
+  const targetDir = join(targetProject as string, skillsDirName as string)
+
+  if (!existsSync(targetDir)) {
+    mkdirSync(targetDir, { recursive: true })
+  }
+
+  spinner.start(`Installing ${selectedSkills.length} skills to ${targetDir}...`)
+
+  let successCount = 0;
+  for (const skill of selectedSkills as string[]) {
+    const sourcePath = join(root, 'skills', skill)
+    if (!existsSync(sourcePath)) {
+      p.log.warn(`Skill not found: ${skill}`)
+      continue
+    }
+
+    const destPath = join(targetDir, skill)
+    if (existsSync(destPath)) {
+      rmSync(destPath, { recursive: true })
+    }
+    
+    mkdirSync(destPath, { recursive: true })
+    
+    const files = readdirSync(sourcePath, { recursive: true, withFileTypes: true })
+    for (const file of files) {
+      if (file.isFile()) {
+        const fullPath = join(file.parentPath, file.name)
+        const relativePath = fullPath.replace(sourcePath, '')
+        const dp = join(destPath, relativePath)
+        const dd = dirname(dp)
+        if (!existsSync(dd)) {
+          mkdirSync(dd, { recursive: true })
+        }
+        cpSync(fullPath, dp)
+      }
+    }
+    successCount++;
+  }
+
+  spinner.stop(`Installed ${successCount}/${selectedSkills.length} skills to target project`)
+}
+
 async function main() {
   const args = process.argv.slice(2)
   const skipPrompt = args.includes('-y') || args.includes('--yes')
@@ -502,15 +598,22 @@ async function main() {
   }
 
   if (command === 'install') {
-    p.intro('Skills Manager - Install')
+    p.intro('Skills Manager - Install Groups')
     await installSkills()
+    p.outro('Done')
+    return
+  }
+
+  if (command === 'add') {
+    p.intro('Skills Manager - Add Specific Skills')
+    await installSpecificSkills()
     p.outro('Done')
     return
   }
 
   if (skipPrompt) {
     p.log.error('Command required when using -y flag')
-    p.log.info('Available commands: install, init, sync, check, cleanup')
+    p.log.info('Available commands: install, add, init, sync, check, cleanup')
     process.exit(1)
   }
 
@@ -519,7 +622,8 @@ async function main() {
   const action = await p.select({
     message: 'What would you like to do?',
     options: [
-      { value: 'install', label: 'Install collections', hint: 'Copy skill collections to a local project' },
+      { value: 'install', label: 'Install collections', hint: 'Copy entire skill collections to a local project' },
+      { value: 'add', label: 'Add specific skills', hint: 'Choose individual skills to add to your project' },
       { value: 'sync', label: 'Sync submodules', hint: 'Pull latest and sync Type 2 skills' },
       { value: 'init', label: 'Init submodules', hint: 'Add new submodules from meta.ts' },
       { value: 'check', label: 'Check updates', hint: 'See available updates' },
@@ -535,6 +639,9 @@ async function main() {
   switch (action) {
     case 'install':
       await installSkills()
+      break
+    case 'add':
+      await installSpecificSkills()
       break
     case 'init':
       await initSubmodules()

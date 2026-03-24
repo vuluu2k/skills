@@ -48,10 +48,17 @@ npx skills add vuluu2k/skills --skill='pinia-options'
 ```
 
 ### Options 3: Interactive CLI
-We've also built an elegant, interactive CLI for advanced management (requires cloning this repo):
+We've also built an elegant, interactive CLI for advanced management:
 
 ```bash
+# Open interactive menu
+npx devskill
+
+# Option 1: Install entire collections of skills
 npx devskill install
+
+# Option 2: Add specific individual skills (use Space to select)
+npx devskill add
 ```
 
 ---

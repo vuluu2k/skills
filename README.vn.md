@@ -27,9 +27,17 @@ Bằng cách cung cấp cho AI các tài liệu `SKILL.md` chuyên dụng, bạn
 
 ## 📦 Cài đặt & Bắt đầu nhanh
 
-Quên việc copy thủ công đi. Chúng tôi đã xây dựng một CLI tương tác thanh lịch để đưa kiến thức trực tiếpChạy CLI trong dự án của bạn:
+Quên việc copy thủ công đi. Chúng tôi đã xây dựng một CLI tương tác thanh lịch để đưa kiến thức trực tiếp vào repo của bạn.
+
 ```bash
+# Mở menu tương tác chính
+npx devskill
+
+# Tuỳ chọn 1: Cài đặt toàn bộ một nhóm (collection) skills
 npx devskill install
+
+# Tuỳ chọn 2: Thêm các skills đơn lẻ (chọn bằng phím Space)
+npx devskill add
 ```
 
 > **Mẹo:** Bạn cũng có thể cài đặt mọi skill trên toàn hệ thống bằng công cụ chính thức:  

@@ -96,6 +96,10 @@ export const vendors: Record<string, VendorSkillMeta> = {
   'shacdn-ui': {
     official: true,
     source: 'https://github.com/shadcn-ui/ui',
+  },
+  'awesome-copilot': {
+    official: true,
+    source: 'https://github.com/github/awesome-copilot',
   }
 }
 

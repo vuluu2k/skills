@@ -1,5 +1,5 @@
 # Sync Info
 
-- **Source:** `vendor/anthropics/skills/webapp-testing`
-- **Git SHA:** `887114fd09f8f24a7e6c907f9ee505348498ab6a`
+- **Source:** `vendor/awesome-copilot/skills/webapp-testing`
+- **Git SHA:** `23fb7006c132a0bba75b0e5af7a35cab11272812`
 - **Synced:** 2026-03-24

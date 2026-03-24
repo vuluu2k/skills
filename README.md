@@ -1,6 +1,9 @@
 <div align="center">
   <h1>🚀 devskill: Supercharge Your AI Agents</h1>
-  <p><strong>Curated Coding Expertise for Cursor, GitHub Copilot, & AgentSkills</strong></p>
+  <p><strong>Curated Coding Expertise for Cursor, Windsurf, Cline, Antigravity, Claude Code, Codex, & GitHub Copilot</strong></p>
+  <p>
+    🌍 <strong><a href="https://vskill.vercel.app">Visit the official devskill Homepage</a></strong>
+  </p>
   <p>
     <a href="README.vn.md">🇻🇳 Read in Vietnamese (Đọc Tiếng Việt)</a> •
     <a href="https://agentskills.io/home" target="_blank">About AgentSkills</a>

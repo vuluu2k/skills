@@ -97,9 +97,9 @@ async function initSubmodules(skipPrompt = false) {
     const shouldRemove = skipPrompt
       ? true
       : await p.confirm({
-          message: 'Remove these extra submodules?',
-          initialValue: true,
-        })
+        message: 'Remove these extra submodules?',
+        initialValue: true,
+      })
 
     if (p.isCancel(shouldRemove)) {
       p.cancel('Cancelled')
@@ -130,14 +130,14 @@ async function initSubmodules(skipPrompt = false) {
   const selected = skipPrompt
     ? newProjects
     : await p.multiselect({
-        message: 'Select projects to initialize',
-        options: newProjects.map(project => ({
-          value: project,
-          label: `${project.name} (${project.type})`,
-          hint: project.url,
-        })),
-        initialValues: newProjects,
-      })
+      message: 'Select projects to initialize',
+      options: newProjects.map(project => ({
+        value: project,
+        label: `${project.name} (${project.type})`,
+        hint: project.url,
+      })),
+      initialValues: newProjects,
+    })
 
   if (p.isCancel(selected)) {
     p.cancel('Cancelled')
@@ -332,9 +332,9 @@ async function cleanup(skipPrompt = false) {
     const shouldRemove = skipPrompt
       ? true
       : await p.confirm({
-          message: 'Remove these extra skills?',
-          initialValue: false,
-        })
+        message: 'Remove these extra skills?',
+        initialValue: false,
+      })
 
     if (p.isCancel(shouldRemove)) {
       p.cancel('Cancelled')
@@ -366,7 +366,7 @@ async function cleanup(skipPrompt = false) {
 
 async function installSkills() {
   const spinner = p.spinner()
-  
+
   const allCollections: Record<string, string[]> = { ...collections }
   for (const [vendorName, config] of Object.entries(vendors)) {
     const vendorConfig = config as VendorConfig
@@ -412,21 +412,45 @@ async function installSkills() {
     return
   }
 
-  const skillsDirName = await p.text({
-    message: 'Name of the skills directory inside target project?',
-    initialValue: 'skills',
-    placeholder: 'skills'
+  const toolChoice = await p.select({
+    message: 'Which AI tool are you installing these skills for?',
+    options: [
+      { value: 'skills', label: 'Generic (skills/)', hint: 'Default skills directory' },
+      { value: '.cursor/skills', label: 'Cursor (.cursor/skills)' },
+      { value: '.windsurf/skills', label: 'Windsurf (.windsurf/skills)' },
+      { value: '.claude/skills', label: 'Claude Desktop (.claude/skills)' },
+      { value: '.claudecode/skills', label: 'Claude Code (.claudecode/skills)' },
+      { value: '.agents/skills', label: 'Antigravity (.agents/skills)' },
+      { value: '.vscode/skills', label: 'VSCode / Copilot (.vscode/skills)' },
+      { value: 'custom', label: 'Custom path...' }
+    ]
   })
 
-  if (p.isCancel(skillsDirName)) {
+  if (p.isCancel(toolChoice)) {
     p.cancel('Cancelled')
     return
+  }
+
+  let skillsDirName = toolChoice as string
+
+  if (toolChoice === 'custom') {
+    const customDir = await p.text({
+      message: 'Enter custom skills directory path:',
+      initialValue: 'skills',
+      placeholder: 'skills'
+    })
+
+    if (p.isCancel(customDir)) {
+      p.cancel('Cancelled')
+      return
+    }
+    skillsDirName = customDir as string
   }
 
   const selectedSkills = Array.from(new Set(
     (selectedCollectionNames as string[]).flatMap(name => allCollections[name])
   ))
-  const targetDir = join(targetProject as string, skillsDirName as string)
+  const targetDir = join(targetProject as string, skillsDirName)
 
   if (!existsSync(targetDir)) {
     mkdirSync(targetDir, { recursive: true })
@@ -446,9 +470,9 @@ async function installSkills() {
     if (existsSync(destPath)) {
       rmSync(destPath, { recursive: true })
     }
-    
+
     mkdirSync(destPath, { recursive: true })
-    
+
     const files = readdirSync(sourcePath, { recursive: true, withFileTypes: true })
     for (const file of files) {
       if (file.isFile()) {
@@ -470,7 +494,7 @@ async function installSkills() {
 
 async function installSpecificSkills() {
   const spinner = p.spinner()
-  
+
   const allSkills = getExistingSkillNames()
 
   if (allSkills.length === 0) {
@@ -511,18 +535,42 @@ async function installSpecificSkills() {
     return
   }
 
-  const skillsDirName = await p.text({
-    message: 'Name of the skills directory inside target project?',
-    initialValue: 'skills',
-    placeholder: 'skills'
+  const toolChoice = await p.select({
+    message: 'Which AI tool are you installing these skills for?',
+    options: [
+      { value: 'skills', label: 'Generic (skills/)', hint: 'Default skills directory' },
+      { value: '.cursor/skills', label: 'Cursor (.cursor/skills)' },
+      { value: '.windsurf/rules', label: 'Windsurf (.windsurf/rules)' },
+      { value: '.claude/skills', label: 'Claude Desktop (.claude/skills)' },
+      { value: '.claudecode/skills', label: 'Claude Code (.claudecode/skills)' },
+      { value: '.agents/skills', label: 'Antigravity (.agents/skills)' },
+      { value: '.vscode/skills', label: 'VSCode / Copilot (.vscode/skills)' },
+      { value: 'custom', label: 'Custom path...' }
+    ]
   })
 
-  if (p.isCancel(skillsDirName)) {
+  if (p.isCancel(toolChoice)) {
     p.cancel('Cancelled')
     return
   }
 
-  const targetDir = join(targetProject as string, skillsDirName as string)
+  let skillsDirName = toolChoice as string
+
+  if (toolChoice === 'custom') {
+    const customDir = await p.text({
+      message: 'Enter custom skills directory path:',
+      initialValue: 'skills',
+      placeholder: 'skills'
+    })
+
+    if (p.isCancel(customDir)) {
+      p.cancel('Cancelled')
+      return
+    }
+    skillsDirName = customDir as string
+  }
+
+  const targetDir = join(targetProject as string, skillsDirName)
 
   if (!existsSync(targetDir)) {
     mkdirSync(targetDir, { recursive: true })
@@ -542,9 +590,9 @@ async function installSpecificSkills() {
     if (existsSync(destPath)) {
       rmSync(destPath, { recursive: true })
     }
-    
+
     mkdirSync(destPath, { recursive: true })
-    
+
     const files = readdirSync(sourcePath, { recursive: true, withFileTypes: true })
     for (const file of files) {
       if (file.isFile()) {

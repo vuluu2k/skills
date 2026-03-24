@@ -1,9 +1,9 @@
 {
-  "name": "@vuluu2k/vskills",
+  "name": "devskill",
   "version": "2.0.2",
   "type": "module",
   "bin": {
-    "vskills": "bin/vskills.js"
+    "devskill": "bin/devskill.js"
   },
   "scripts": {
     "start": "tsx scripts/cli.ts",

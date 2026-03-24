@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🚀 vskills: Supercharge Your AI Agents</h1>
+  <h1>🚀 devskill: Supercharge Your AI Agents</h1>
   <p><strong>Curated Coding Expertise for Cursor, GitHub Copilot, & AgentSkills</strong></p>
   <p>
     <a href="README.vn.md">🇻🇳 Read in Vietnamese (Đọc Tiếng Việt)</a> •
@@ -13,7 +13,7 @@ Are you tired of constantly reminding your AI assistant about your team's specif
 
 ## 💡 The Solution
 
-**`vskills`** is a curated collection of highly specific, context-rich "Agent Skills" designed to align your AI with your exact development stack. Stop prompting, start building.
+**`devskill`** is a curated collection of highly specific, context-rich "Agent Skills" designed to align your AI with your exact development stack. Stop prompting, start building.
 
 By feeding your AI specialized `SKILL.md` documents, you **eliminate AI hallucinations** and strictly enforce your project's architecture.
 
@@ -51,7 +51,7 @@ npx skills add vuluu2k/skills --skill='pinia-options'
 We've also built an elegant, interactive CLI for advanced management (requires cloning this repo):
 
 ```bash
-npx @vuluu2k/vskills install
+npx devskill install
 ```
 
 ---

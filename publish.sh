@@ -3,7 +3,7 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-echo "📦 Chuẩn bị Publish package vskills lên NPM..."
+echo "📦 Chuẩn bị Publish package devskill lên NPM..."
 
 # 1. Kiểm tra trạng thái đăng nhập NPM
 if ! npm whoami > /dev/null 2>&1; then
@@ -20,8 +20,8 @@ NPM_USER=$(npm whoami)
 echo "✅ Đã đăng nhập NPM với tài khoản: $NPM_USER"
 
 if [[ "$NPM_USER" != "vuluu2k" ]]; then
-  echo "⚠️ CẢNH BÁO: Package trong package.json đang được đặt tên là @vuluu2k/vskills."
-  echo "Hãy chắc chắn rằng tài khoản '$NPM_USER' của bạn có quyền tạo hoặc truy cập organization '@vuluu2k' trên npmjs.com."
+  echo "⚠️ CẢNH BÁO: Package trong package.json đang được đặt tên là devskill."
+  echo "Hãy chắc chắn rằng tài khoản '$NPM_USER' của bạn có quyền publish package 'devskill' trên npmjs.com."
   echo ""
 fi
 

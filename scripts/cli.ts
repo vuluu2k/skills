@@ -378,8 +378,8 @@ async function installSkills() {
     return
   }
 
-  const selectedCollectionName = await p.select({
-    message: 'Select a collection to install',
+  const selectedCollectionNames = await p.multiselect({
+    message: 'Select collections to install',
     options: Object.keys(allCollections).map(name => ({
       value: name,
       label: name,
@@ -387,8 +387,13 @@ async function installSkills() {
     }))
   })
 
-  if (p.isCancel(selectedCollectionName)) {
+  if (p.isCancel(selectedCollectionNames)) {
     p.cancel('Cancelled')
+    return
+  }
+
+  if (selectedCollectionNames.length === 0) {
+    p.log.warn('No collections selected')
     return
   }
 
@@ -418,7 +423,9 @@ async function installSkills() {
     return
   }
 
-  const selectedSkills = allCollections[selectedCollectionName as string]
+  const selectedSkills = Array.from(new Set(
+    (selectedCollectionNames as string[]).flatMap(name => allCollections[name])
+  ))
   const targetDir = join(targetProject as string, skillsDirName as string)
 
   if (!existsSync(targetDir)) {

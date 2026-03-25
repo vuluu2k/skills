@@ -34,3 +34,6 @@
 [submodule "vendor/awesome-copilot"]
 	path = vendor/awesome-copilot
 	url = https://github.com/github/awesome-copilot
+[submodule "sources/deepinfra"]
+	path = sources/deepinfra
+	url = https://github.com/deepinfra/docs

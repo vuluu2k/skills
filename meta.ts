@@ -26,6 +26,7 @@ export const submodules: Record<string, string> = {
   // 'react': 'https://github.com/reactjs/react.dev',
   'vue': 'https://github.com/vuejs/docs',
   'pinia': 'https://github.com/vuejs/pinia',
+  'deepinfra': 'https://github.com/deepinfra/docs',
 }
 
 /**
@@ -156,6 +157,7 @@ export const collections: Record<string, string[]> = {
     'builderx_api-rabbitmq',
     'builderx_api-mongodb',
     'git-commit',
+    'deepinfra',
   ]
 }
 

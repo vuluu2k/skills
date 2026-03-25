@@ -2,8 +2,8 @@
 name: builderx_api-schemas
 description: Guidelines for creating Ecto Schemas in builderx_api, including composite primary keys, custom json function and Ecto.Changeset.
 metadata:
-  author: AI Assistant
-  version: "2026.03.23"
+  author: Vũ Lưu
+  version: "2026.03.25"
   source: Source code builderx_api
 ---
 

@@ -1,5 +1,10 @@
 ---
+name: builderx_api-rabbitmq
 description: Patterns for using RabbitMQ (AMQP), creating consumers/workers, and publishing messages in BuilderX API
+metadata:
+  author: Vũ Lưu
+  version: "2026.03.25"
+  source: Source code builderx_api
 ---
 
 # BuilderX API RabbitMQ Skill

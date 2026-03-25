@@ -1,5 +1,10 @@
 ---
+name: builderx_api-redis
 description: Patterns for using Redis caching, PubSub, and Poolboy in BuilderX API
+metadata:
+  author: Vũ Lưu
+  version: "2026.03.25"
+  source: Source code builderx_api
 ---
 
 # BuilderX API Redis Skill

@@ -2,8 +2,8 @@
 name: builderx_api-controllers
 description: Guide to Phoenix Controller structure in builderx_api using FallbackController and standard tuple responses.
 metadata:
-  author: AI Assistant
-  version: "2026.03.23"
+  author: Vũ Lưu
+  version: "2026.03.25"
   source: Source code builderx_api
 ---
 

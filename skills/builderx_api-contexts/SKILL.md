@@ -2,8 +2,8 @@
 name: builderx_api-contexts
 description: Guide to Context logic structure in builderx_api.
 metadata:
-  author: AI Assistant
-  version: "2026.03.23"
+  author: Vũ Lưu
+  version: "2026.03.25"
   source: Source code builderx_api
 ---
 

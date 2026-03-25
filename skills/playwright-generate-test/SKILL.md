@@ -1,6 +1,10 @@
 ---
 name: playwright-generate-test
 description: 'Generate a Playwright test based on a scenario using Playwright MCP'
+metadata:
+  author: Vũ Lưu
+  version: "2026.03.25"
+  source: base
 ---
 
 # Test Generation with Playwright MCP

@@ -1,5 +1,10 @@
 ---
+name: builderx_api-mongodb
 description: Patterns for using MongoDB driver and dynamic collections in BuilderX API
+metadata:
+  author: Vũ Lưu
+  version: "2026.03.25"
+  source: Source code builderx_api
 ---
 
 # BuilderX API MongoDB Skill

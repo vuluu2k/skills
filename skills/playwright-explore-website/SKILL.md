@@ -1,6 +1,10 @@
 ---
 name: playwright-explore-website
 description: 'Website exploration for testing using Playwright MCP'
+metadata:
+  author: Vũ Lưu
+  version: "2026.03.25"
+  source: base
 ---
 
 # Website Exploration for Testing

@@ -1,5 +1,10 @@
 ---
+name: builderx_api-kafka
 description: Patterns for using Kafka (:brod), creating producers, consumers, and offset management in BuilderX API
+metadata:
+  author: Vũ Lưu
+  version: "2026.03.25"
+  source: Source code builderx_api
 ---
 
 # BuilderX API Kafka Skill

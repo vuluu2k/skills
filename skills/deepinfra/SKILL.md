@@ -1,9 +1,9 @@
 ---
 name: deepinfra
-description: Integration guidelines for DeepInfra API. Directs the agent to adapt DeepInfra REST API calls to the target repository's standard HTTP client.
+description: Guide to setting up and using DeepInfra API for LLM and image generation models.
 metadata:
-  author: AI Assistant
-  version: "1.0.1"
+  author: Vũ Lưu
+  version: "2026.03.25"
   source: Generated from sources/deepinfra
 ---
 

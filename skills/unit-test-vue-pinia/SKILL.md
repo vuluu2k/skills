@@ -1,7 +1,10 @@
 ---
 name: unit-test-vue-pinia
-category: testing
 description: 'Write and review unit tests for Vue 3 + TypeScript + Vitest + Pinia codebases. Use when creating or updating tests for components, composables, and stores; mocking Pinia with createTestingPinia; applying Vue Test Utils patterns; and enforcing black-box assertions over implementation details.'
+metadata:
+  author: Vũ Lưu
+  version: "2026.03.25"
+  source: base
 ---
 
 # unit-test-vue-pinia

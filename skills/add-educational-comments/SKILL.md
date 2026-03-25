@@ -1,6 +1,10 @@
 ---
 name: add-educational-comments
 description: 'Add educational comments to the file specified, or prompt asking for file to comment if one is not provided.'
+metadata:
+  author: Vũ Lưu
+  version: "2026.03.25"
+  source: base
 ---
 
 # Add Educational Comments

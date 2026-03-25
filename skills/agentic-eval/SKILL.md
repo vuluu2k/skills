@@ -8,6 +8,10 @@ description: |
   - Designing rubric-based or LLM-as-judge evaluation systems
   - Adding iterative improvement to agent outputs (code, reports, analysis)
   - Measuring and improving agent response quality
+metadata:
+  author: Vũ Lưu
+  version: "2026.03.25"
+  source: base
 ---
 
 # Agentic Evaluation Patterns

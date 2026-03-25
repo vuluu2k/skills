@@ -24,9 +24,6 @@ metadata:
 defmodule BuilderxApiWeb.V1.ExampleController do
   use BuilderxApiWeb, :controller
   
-  # Required: Declare action_fallback
-  action_fallback BuilderxApiWeb.FallbackController
-
   def show(conn, %{"id" => id}) do
     # Context functions should return tuples compatible with FallbackController instead of standard {:ok, data}
     # Example:

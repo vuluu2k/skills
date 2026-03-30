@@ -1,42 +1,69 @@
 {
   "Index": {
     "title": "Upgrade Your AI's Brain",
-    "subtitle": "Equip Cursor, Windsurf, Cline, Antigravity, Claude Code, Codex, GitHub Copilot and other AI Agents with expert programming superpowers via a single interactive prompt.",
-    "problem": "The Problem",
-    "solution": "The Solution",
-    "why_devskill": "The power of devskill",
-    "installation": "Installation & Quick Start",
+    "subtitle": "Equip Cursor, Claude Code, Windsurf, GitHub Copilot, and other AI agents with expert-level coding knowledge via a single CLI command.",
+    "why_devskill": "Why devskill",
+    "why_devskill_label": "FEATURES",
+    "why_devskill_desc": "Everything your AI agent needs to write production-quality code.",
+    "how_it_works": "How it works",
+    "how_it_works_label": "GETTING STARTED",
+    "how_it_works_desc": "Three steps to give your AI agent expert-level coding superpowers.",
+    "step_label": "STEP",
+    "step1_title": "Run the CLI",
+    "step1_desc": "Execute npx devskill in your project root. The interactive CLI launches instantly.",
+    "step2_title": "Pick your stack",
+    "step2_desc": "Select the skill collections that match your tech stack from the visual menu.",
+    "step3_title": "Start coding",
+    "step3_desc": "Your AI agent now has deep knowledge of your frameworks and conventions.",
+    "installation": "Installation",
     "collections": "Skill Collections",
-    "footer": "© 2026 devskill. Empower your AI assistants.",
-    "contribute_title": "Build & Contribute",
-    "contribute_desc": "Does your team have unique coding standards? You can easily build a completely customized AI brain! If you have any awesome frameworks or best-practices you'd like to share, create an Issue on GitHub so we can add it to devskill.",
-    "contribute_cta_issue": "💡 Suggest a Skill",
-    "contribute_cta_build": "🛠️ Build Your Own",
-    "architecture_title": "Smart Directory Architecture",
-    "architecture_desc": "More than just a CLI, devskill provides a clearly stratified Knowledge Base management pipeline.",
-    "sources_title": "The Root (sources/)",
-    "sources_desc": "The raw data layer. Stores official documentation, template repos, and guidelines (often tracked as git submodules). AI reads this to generate your SKILL.md rules.",
-    "vendor_title": "Submodules (vendor/)",
-    "vendor_desc": "Your external dependency layer. Automatically syncs community or third-party high-quality skills into your project. Keep them fresh with a single 'npm start sync'."
+    "collections_label": "COLLECTIONS",
+    "collections_desc": "Curated skill sets designed for specific tech stacks and projects.",
+    "collections_builderx_spa": "Vue Options API + Pinia architecture for single page applications.",
+    "collections_builderx_api": "Phoenix Elixir backend — schemas, controllers, Kafka, Redis, RabbitMQ.",
+    "collections_landing_page": "Phoenix + Vue 2 landing page builder — Ecto, Oban, Plugs, Channels.",
+    "collections_vue3_standard": "Modern Vue 3 Composition API with Pinia and best practices.",
+    "works_with": "Works with your favorite AI tools",
+    "stats_skills": "Expert Skills",
+    "stats_collections": "Collections",
+    "stats_frameworks": "Frameworks",
+    "stats_ai_tools": "AI Tools Supported",
+    "terminal_select": "Select collections to install:",
+    "terminal_skills": "{count} skills",
+    "terminal_installed": "Installed {count} skills to .agents/skills/",
+    "terminal_path": "Done in 1.2s",
+    "footer": "© 2026 devskill. Open source, built for developers.",
+    "contribute_title": "Ready to upgrade your AI?",
+    "contribute_desc": "Join the community. Contribute your own skills or suggest frameworks you'd like to see supported.",
+    "contribute_cta_issue": "Suggest a Skill",
+    "architecture_title": "Architecture",
+    "architecture_label": "UNDER THE HOOD",
+    "architecture_desc": "A clearly layered knowledge pipeline — manual, generated, and community-synced skills.",
+    "arch_manual_title": "Hand-written Skills (skills/)",
+    "arch_manual_desc": "Expert-crafted SKILL.md files with project-specific patterns, conventions, and working code examples.",
+    "sources_title": "Generated from Docs (sources/)",
+    "sources_desc": "Clone official documentation as git submodules. AI reads and extracts structured skills automatically.",
+    "vendor_title": "Community Skills (vendor/)",
+    "vendor_desc": "Auto-sync high-quality skills from community repositories. Keep them fresh with a single sync command."
   },
   "Hero": {
-    "badge": "🚀 NEW: devskill v2.0",
+    "badge": "v2.0 — 299+ skills available",
     "description": "Skip the tedious setup. Pick your favorite tech stacks from our interactive CLI, and let devskill inject specialized project guidelines (SKILL.md) directly into your AI.",
-    "cta": "Explore GitHub Skills",
+    "cta": "View on GitHub",
     "install_cmd": "npx devskill"
   },
   "Features": {
     "onboarding": {
       "title": "Instant Integration",
-      "desc": "Launch the visual CLI, select frameworks, and watch context stream directly into your .agents/skills folder."
+      "desc": "Run one command, pick your frameworks, and skills stream directly into your project's .agents/skills folder."
     },
     "accuracy": {
-      "title": "Senior-Level Quality",
-      "desc": "From deep Vue patterns to strict Phoenix Ecto rules, your AI gets zero-hallucination context to write code the right way."
+      "title": "Zero-Hallucination Context",
+      "desc": "From Vue patterns to Phoenix Ecto rules — your AI gets battle-tested knowledge to write code the right way."
     },
     "frictionless": {
-      "title": "1-Tap Install & Update",
-      "desc": "Using npx devskill, adding superpowers to your AI has never been faster or looked this good."
+      "title": "Always Up to Date",
+      "desc": "Sync community skills and regenerate from latest docs with a single command. Your AI never falls behind."
     }
   }
 }

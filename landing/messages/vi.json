@@ -1,42 +1,69 @@
 {
   "Index": {
-    "title": "Nâng cấp bộ não AI của bạn",
-    "subtitle": "Trang bị cho Cursor, Windsurf, Cline, Antigravity, Claude Code, Codex, GitHub Copilot và các AI Agent siêu năng lực lập trình chuyên sâu chỉ với một câu lệnh.",
-    "problem": "Vấn đề",
-    "solution": "Giải pháp",
-    "why_devskill": "Sức mạnh thực sự của devskill",
-    "installation": "Cài đặt & Trải nghiệm",
+    "title": "Nâng cấp bộ não AI",
+    "subtitle": "Trang bị cho Cursor, Claude Code, Windsurf, GitHub Copilot và các AI agent khác kiến thức lập trình chuyên sâu chỉ với một câu lệnh.",
+    "why_devskill": "Tại sao chọn devskill",
+    "why_devskill_label": "TÍNH NĂNG",
+    "why_devskill_desc": "Mọi thứ AI agent cần để viết code chất lượng production.",
+    "how_it_works": "Cách hoạt động",
+    "how_it_works_label": "BẮT ĐẦU",
+    "how_it_works_desc": "Ba bước để AI agent viết code chuẩn như senior developer.",
+    "step_label": "BƯỚC",
+    "step1_title": "Chạy CLI",
+    "step1_desc": "Gõ npx devskill tại thư mục dự án. CLI tương tác khởi chạy ngay lập tức.",
+    "step2_title": "Chọn tech stack",
+    "step2_desc": "Chọn bộ skill phù hợp với tech stack của bạn từ menu trực quan.",
+    "step3_title": "Bắt đầu code",
+    "step3_desc": "AI agent của bạn giờ đã có kiến thức chuyên sâu về framework và quy chuẩn dự án.",
+    "installation": "Cài đặt",
     "collections": "Bộ sưu tập Skills",
-    "footer": "© 2026 devskill. Xây dựng bộ não mạnh mẽ nhất cho AI của bạn.",
-    "contribute_title": "Tự Xây Dựng & Đóng Góp",
-    "contribute_desc": "Đội ngũ của bạn có quy chuẩn code riêng? Đừng lo, bạn có thể tự build bộ não AI chuyên biệt cho team! Nếu bạn biết một framework hay best-practices nào đỉnh cao, hãy tạo Issue trên GitHub để mình thêm vào devskill nhé.",
-    "contribute_cta_issue": "💡 Gợi ý Skills (Tạo Issue)",
-    "contribute_cta_build": "🛠️ Tự Build Skills",
-    "architecture_title": "Cấu trúc Thư mục Thông minh",
-    "architecture_desc": "Không chỉ là một CLI, devskill cung cấp vòng đời quản lý tri thức (Knowledge Base) phân tầng rõ rệt.",
-    "sources_title": "Nguồn gốc (sources/)",
-    "sources_desc": "Nơi chứa tài liệu gốc, mã nguồn mẫu, official documentation (thường track dưới dạng git submodules). AI sẽ đọc và đọc hiểu tự động để trích xuất các quy chuẩn ra file SKILL.md.",
-    "vendor_title": "Cộng đồng (vendor/)",
-    "vendor_desc": "Kho lưu trữ các skill chất lượng cao được chia sẻ từ cộng đồng hoặc tổ chức khác. Chỉ cần 1 lệnh 'npm start sync' để cập nhật liên tục mọi thay đổi về máy!"
+    "collections_label": "BỘ SƯU TẬP",
+    "collections_desc": "Các bộ skill được tuyển chọn cho từng tech stack và dự án cụ thể.",
+    "collections_builderx_spa": "Vue Options API + Pinia cho ứng dụng single page application.",
+    "collections_builderx_api": "Phoenix Elixir backend — schemas, controllers, Kafka, Redis, RabbitMQ.",
+    "collections_landing_page": "Phoenix + Vue 2 landing page builder — Ecto, Oban, Plugs, Channels.",
+    "collections_vue3_standard": "Vue 3 Composition API hiện đại với Pinia và best practices.",
+    "works_with": "Tương thích với các AI tool yêu thích của bạn",
+    "stats_skills": "Skills chuyên sâu",
+    "stats_collections": "Bộ sưu tập",
+    "stats_frameworks": "Frameworks",
+    "stats_ai_tools": "AI Tools hỗ trợ",
+    "terminal_select": "Chọn bộ sưu tập cần cài đặt:",
+    "terminal_skills": "{count} skills",
+    "terminal_installed": "Đã cài {count} skills vào .agents/skills/",
+    "terminal_path": "Hoàn tất trong 1.2s",
+    "footer": "© 2026 devskill. Mã nguồn mở, xây dựng cho developer.",
+    "contribute_title": "Sẵn sàng nâng cấp AI của bạn?",
+    "contribute_desc": "Tham gia cộng đồng. Đóng góp skill của riêng bạn hoặc gợi ý framework muốn được hỗ trợ.",
+    "contribute_cta_issue": "Gợi ý Skill",
+    "architecture_title": "Kiến trúc",
+    "architecture_label": "CẤU TRÚC BÊN TRONG",
+    "architecture_desc": "Pipeline quản lý tri thức phân tầng — skills thủ công, tự động tạo, và đồng bộ từ cộng đồng.",
+    "arch_manual_title": "Skills viết tay (skills/)",
+    "arch_manual_desc": "File SKILL.md được viết bởi chuyên gia với các pattern, quy chuẩn và code ví dụ thực tế cho từng dự án.",
+    "sources_title": "Tạo từ tài liệu (sources/)",
+    "sources_desc": "Clone tài liệu chính thức dưới dạng git submodules. AI đọc và trích xuất skill có cấu trúc tự động.",
+    "vendor_title": "Skills cộng đồng (vendor/)",
+    "vendor_desc": "Tự động đồng bộ skill chất lượng cao từ cộng đồng. Cập nhật liên tục chỉ với một lệnh sync."
   },
   "Hero": {
-    "badge": "🚀 MỚI: devskill v2.0",
-    "description": "Không cần thiết lập rườm rà. Chọn mâm đồ nghề (framework) yêu thích của bạn từ CLI tương tác và để devskill bơm trực tiếp các quy chuẩn dự án (SKILL.md) vào não AI.",
-    "cta": "Khám phá GitHub Skills",
+    "badge": "v2.0 — 299+ skills có sẵn",
+    "description": "Không cần thiết lập rườm rà. Chọn tech stack yêu thích từ CLI tương tác và devskill sẽ bơm trực tiếp quy chuẩn dự án (SKILL.md) vào AI.",
+    "cta": "Xem trên GitHub",
     "install_cmd": "npx devskill"
   },
   "Features": {
     "onboarding": {
       "title": "Tích hợp tức thì",
-      "desc": "Mở CLI trực quan lên, click chọn framework, và kiến thức sẽ được đẩy thẳng vào thư mục .agents/skills của bạn."
+      "desc": "Chạy một lệnh, chọn framework, và skill được đẩy thẳng vào thư mục .agents/skills của dự án."
     },
     "accuracy": {
-      "title": "Code chuẩn như Senior",
-      "desc": "Các quy định khắt khe nhất từ cấu trúc Vue đến Phoenix Ecto đều được đúc kết sắc nét để AI của bạn không bao giờ code sai pattern."
+      "title": "Không còn hallucination",
+      "desc": "Từ Vue patterns đến Phoenix Ecto rules — AI nhận kiến thức đã được kiểm chứng để viết code đúng chuẩn."
     },
     "frictionless": {
-      "title": "Cài đặt & Cập nhật 1 chạm",
-      "desc": "Với npx devskill, trải nghiệm nâng cấp sức mạnh AI của bạn chưa bao giờ nhanh gọn và phong cách đến thế."
+      "title": "Luôn cập nhật",
+      "desc": "Đồng bộ skill cộng đồng và tái tạo từ tài liệu mới nhất chỉ với một lệnh. AI không bao giờ lỗi thời."
     }
   }
 }

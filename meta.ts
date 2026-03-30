@@ -126,6 +126,13 @@ export const manual = [
   'builderx_api-schemas',
   'builderx_api-controllers',
   'builderx_api-contexts',
+  'landing_page-schemas',
+  'landing_page-controllers',
+  'landing_page-contexts',
+  'landing_page-plugs',
+  'landing_page-oban',
+  'landing_page-channels',
+  'landing_page-vue2-editor',
 ]
 
 /**
@@ -158,6 +165,16 @@ export const collections: Record<string, string[]> = {
     'builderx_api-mongodb',
     'git-commit',
     'deepinfra',
+  ],
+  'landing_page': [
+    'landing_page-schemas',
+    'landing_page-controllers',
+    'landing_page-contexts',
+    'landing_page-plugs',
+    'landing_page-oban',
+    'landing_page-channels',
+    'landing_page-vue2-editor',
+    'git-commit',
   ]
 }
 

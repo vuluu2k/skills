@@ -110,7 +110,7 @@ export default function LandingPage() {
                 {h('badge')}
               </Badge>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-zinc-400 leading-[1.1]">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-zinc-400 leading-[1.25]">
                 {t('title')}
               </h1>
 

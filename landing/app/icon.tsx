@@ -16,19 +16,16 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(to top right, #22d3ee, #f43f5e)',
-          borderRadius: '8px',
+          background: 'linear-gradient(135deg, #22d3ee, #a855f7, #f43f5e)',
+          borderRadius: '7px',
         }}
       >
         <svg
-          width="20"
-          height="20"
+          width="18"
+          height="18"
           viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          fill="white"
+          stroke="none"
         >
           <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
         </svg>
